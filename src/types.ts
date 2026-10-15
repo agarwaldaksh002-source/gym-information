@@ -53,3 +53,43 @@ export interface NutritionPillar {
   staples: string[];
   timing: string;
 }
+
+export interface BlogFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface BlogInternalLink {
+  anchorText: string;
+  url: string;
+  context: string;
+}
+
+export interface BlogSection {
+  heading: string;
+  content: string[];
+  subsections?: {
+    subheading: string;
+    content: string[];
+  }[];
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  seoTitle: string;
+  metaDescription: string;
+  publishDate: string;
+  readTime: string;
+  category: 'Strength' | 'Hypertrophy' | 'Conditioning' | 'Mobility' | 'Nutrition';
+  primaryKeyword: string;
+  relatedKeywords: string[];
+  image: string;
+  alt: string;
+  intro: string;
+  sections: BlogSection[];
+  conclusion: string;
+  faqs: [BlogFAQ, BlogFAQ];
+  internalLinks: BlogInternalLink[];
+  relatedSlugs: string[];
+}

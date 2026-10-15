@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
+import { BLOG_POSTS } from '../data/blogData.ts';
 
 interface FooterProps {
-  onNavigate: (sectionId: string) => void;
+  onNavigate: (sectionOrPath: string) => void;
 }
 
 export function Footer({ onNavigate }: FooterProps) {
@@ -76,7 +77,7 @@ export function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
 
-          {/* Right: Athlete Dispatch Signup */}
+          {/* Right: Athlete Dispatch Signup & Protocol Directory */}
           <div className="lg:col-span-6 flex flex-col justify-between lg:pl-8">
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -121,7 +122,7 @@ export function Footer({ onNavigate }: FooterProps) {
               )}
             </div>
 
-            {/* Quick Links */}
+            {/* Quick Navigation Links */}
             <div className="flex flex-wrap items-center gap-6 mt-10 text-xs font-medium text-[#A0A0A0]">
               <button onClick={() => onNavigate('hero')} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Home
@@ -135,6 +136,9 @@ export function Footer({ onNavigate }: FooterProps) {
               <button onClick={() => onNavigate('nutrition')} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Nutrition
               </button>
+              <button onClick={() => onNavigate('blog')} className="text-white hover:text-[#C6FF00] transition-colors cursor-pointer uppercase font-semibold">
+                Journal
+              </button>
               <button onClick={() => onNavigate('gallery')} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Gallery
               </button>
@@ -142,8 +146,30 @@ export function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
 
+        {/* Middle Tier: Direct SEO Protocol Crawl Links */}
+        <div className="py-8 border-b border-white/[0.06]">
+          <span className="font-mono text-[10px] uppercase text-neutral-500 tracking-widest block mb-4">
+            FEATURED RESEARCH DIRECTIVES:
+          </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs text-[#A0A0A0]">
+            {BLOG_POSTS.map((post) => (
+              <a
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`blog/${post.slug}`);
+                }}
+                className="hover:text-[#C6FF00] transition-colors truncate block"
+              >
+                • {post.title}
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom Tier: Simple Copyright Notice */}
-        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
           <p>© {new Date().getFullYear()} BUILT BY DISCIPLINE. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-4">
             <span>PERFORMANCE LABS</span>

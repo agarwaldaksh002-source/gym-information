@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
+  currentRoute?: string;
   onOpenJourney: () => void;
-  onNavigate: (sectionId: string) => void;
+  onNavigate: (sectionOrPath: string) => void;
 }
 
-export function Navbar({ onOpenJourney, onNavigate }: NavbarProps) {
+export function Navbar({ currentRoute = '/', onOpenJourney, onNavigate }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -31,23 +32,26 @@ export function Navbar({ onOpenJourney, onNavigate }: NavbarProps) {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'HOME', id: 'hero' },
-    { label: 'WORKOUTS', id: 'workouts' },
-    { label: 'PROGRAMS', id: 'programs' },
-    { label: 'NUTRITION', id: 'nutrition' },
-    { label: 'ABOUT', id: 'gallery' },
+    { label: 'HOME', target: 'hero' },
+    { label: 'WORKOUTS', target: 'workouts' },
+    { label: 'PROGRAMS', target: 'programs' },
+    { label: 'NUTRITION', target: 'nutrition' },
+    { label: 'JOURNAL', target: 'blog' },
+    { label: 'ABOUT', target: 'gallery' },
   ];
 
-  const handleLinkClick = (id: string) => {
+  const handleLinkClick = (target: string) => {
     setMobileMenuOpen(false);
-    onNavigate(id);
+    onNavigate(target);
   };
+
+  const isJournalActive = currentRoute.startsWith('/blog');
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-athletic ${
-          isScrolled
+          isScrolled || isJournalActive
             ? 'bg-[#080808]/92 backdrop-blur-md border-b border-white/[0.08] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
             : 'bg-transparent py-6 sm:py-8'
         }`}
@@ -66,18 +70,27 @@ export function Navbar({ onOpenJourney, onNavigate }: NavbarProps) {
             </div>
           </button>
 
-          {/* Zone 2: 4–5 concise single-line text navigation links */}
-          <nav className="hidden md:flex items-center gap-9 text-[11px] font-mono tracking-[0.2em] text-[#A0A0A0]">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleLinkClick(link.id)}
-                className="hover:text-white transition-colors relative py-1 focus:outline-none cursor-pointer whitespace-nowrap shrink-0 group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#C6FF00] transition-all duration-300 ease-athletic group-hover:w-full" />
-              </button>
-            ))}
+          {/* Zone 2: Concise single-line text navigation links */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-9 text-[11px] font-mono tracking-[0.2em] text-[#A0A0A0]">
+            {navLinks.map((link) => {
+              const isCurrent = link.target === 'blog' ? isJournalActive : currentRoute === '/' && link.target === 'hero';
+              return (
+                <button
+                  key={link.target}
+                  onClick={() => handleLinkClick(link.target)}
+                  className={`hover:text-white transition-colors relative py-1 focus:outline-none cursor-pointer whitespace-nowrap shrink-0 group ${
+                    isCurrent ? 'text-white' : ''
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#C6FF00] transition-all duration-300 ease-athletic ${
+                      isCurrent ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </button>
+              );
+            })}
           </nav>
 
           {/* Zone 3: 1 primary action */}
@@ -120,12 +133,12 @@ export function Navbar({ onOpenJourney, onNavigate }: NavbarProps) {
             </button>
           </div>
 
-          <nav className="flex flex-col gap-6 py-8">
+          <nav className="flex flex-col gap-5 py-8">
             {navLinks.map((link, idx) => (
               <button
-                key={link.id}
-                onClick={() => handleLinkClick(link.id)}
-                className="text-left font-condensed font-black text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
+                key={link.target}
+                onClick={() => handleLinkClick(link.target)}
+                className="text-left font-condensed font-black text-3xl sm:text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
               >
                 <span className="text-xs font-mono text-[#C6FF00] font-normal">0{idx + 1}</span>
                 <span>{link.label}</span>
