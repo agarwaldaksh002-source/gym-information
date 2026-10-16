@@ -7,31 +7,47 @@ export function updatePageSEO(options: {
   image?: string;
   article?: BlogPost;
 }) {
-  const { title, description, canonicalPath = window.location.pathname, image = '/images/hero_athlete.jpg', article } = options;
+  const {
+    title,
+    description,
+    canonicalPath = window.location.pathname,
+    image = '/images/hero_athlete.jpg',
+    article,
+  } = options;
 
-  // 1. Title
+  // 1. Title Tag
   document.title = title;
 
-  // 2. Meta description
+  // 2. Meta description & robots
   updateOrCreateMeta('description', description);
+  updateOrCreateMeta(
+    'robots',
+    'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+  );
+  updateOrCreateMeta('author', article ? article.author.name : 'Built By Discipline Athletic Science');
 
   // 3. OpenGraph tags
   updateOrCreateMeta('og:title', title, 'property');
   updateOrCreateMeta('og:description', description, 'property');
   updateOrCreateMeta('og:type', article ? 'article' : 'website', 'property');
-  
-  const origin = window.location.origin || 'https://builtbydiscipline.com';
-  const fullCanonical = `${origin}${canonicalPath}`;
-  updateOrCreateMeta('og:url', fullCanonical, 'property');
-  updateOrCreateMeta('og:image', `${origin}${image}`, 'property');
+  updateOrCreateMeta('og:site_name', 'Built By Discipline', 'property');
 
-  // 4. Twitter tags
+  const origin = window.location.origin || 'https://builtbydiscipline.com';
+  const fullCanonical = `${origin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
+  const fullImageUrl = image.startsWith('http') ? image : `${origin}${image}`;
+
+  updateOrCreateMeta('og:url', fullCanonical, 'property');
+  updateOrCreateMeta('og:image', fullImageUrl, 'property');
+  updateOrCreateMeta('og:image:alt', article ? article.alt : 'Built By Discipline Athletic Performance', 'property');
+
+  // 4. Twitter Card tags
   updateOrCreateMeta('twitter:card', 'summary_large_image');
   updateOrCreateMeta('twitter:title', title);
   updateOrCreateMeta('twitter:description', description);
-  updateOrCreateMeta('twitter:image', `${origin}${image}`);
+  updateOrCreateMeta('twitter:image', fullImageUrl);
+  updateOrCreateMeta('twitter:image:alt', article ? article.alt : 'Built By Discipline Athletic Performance');
 
-  // 5. Canonical link tag
+  // 5. Canonical Link tag
   let linkCanonical = document.querySelector<HTMLLinkElement>("link[rel='canonical']");
   if (!linkCanonical) {
     linkCanonical = document.createElement('link');
@@ -55,19 +71,32 @@ export function updatePageSEO(options: {
       '@graph': [
         {
           '@type': 'Article',
+          '@id': `${fullCanonical}#article`,
+          isPartOf: {
+            '@type': 'WebPage',
+            '@id': fullCanonical,
+          },
           headline: article.title,
           description: article.metaDescription,
-          image: `${origin}${article.image}`,
+          image: [fullImageUrl],
           datePublished: '2026-10-01T08:00:00+00:00',
           dateModified: '2026-10-15T08:00:00+00:00',
           author: {
-            '@type': 'Organization',
-            name: 'Built By Discipline Research Team',
-            url: origin,
+            '@type': 'Person',
+            name: article.author.name,
+            jobTitle: article.author.role,
+            description: article.author.credentials,
+            url: `${origin}/blog`,
+          },
+          reviewedBy: {
+            '@type': 'Person',
+            name: article.reviewedBy.name,
+            jobTitle: article.reviewedBy.role,
           },
           publisher: {
             '@type': 'Organization',
             name: 'Built By Discipline',
+            url: origin,
             logo: {
               '@type': 'ImageObject',
               url: `${origin}/favicon.ico`,
@@ -78,9 +107,15 @@ export function updatePageSEO(options: {
             '@id': fullCanonical,
           },
           keywords: [article.primaryKeyword, ...article.relatedKeywords].join(', '),
+          articleSection: article.category,
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', '.aeo-direct-answer', '.summary-takeaway'],
+          },
         },
         {
           '@type': 'FAQPage',
+          '@id': `${fullCanonical}#faq`,
           mainEntity: article.faqs.map((faq) => ({
             '@type': 'Question',
             name: faq.question,
@@ -92,6 +127,7 @@ export function updatePageSEO(options: {
         },
         {
           '@type': 'BreadcrumbList',
+          '@id': `${fullCanonical}#breadcrumb`,
           itemListElement: [
             {
               '@type': 'ListItem',
@@ -102,7 +138,7 @@ export function updatePageSEO(options: {
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Journal',
+              name: 'Athletic Journal',
               item: `${origin}/blog`,
             },
             {
@@ -115,23 +151,93 @@ export function updatePageSEO(options: {
         },
       ],
     };
-    scriptJsonLd.textContent = JSON.stringify(jsonLdData);
-  } else {
+    scriptJsonLd.textContent = JSON.stringify(jsonLdData, null, 2);
+  } else if (canonicalPath === '/blog' || canonicalPath === '/blog/') {
     const jsonLdData = {
       '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: 'Built By Discipline',
-      applicationCategory: 'HealthAndFitnessApplication',
-      operatingSystem: 'All',
-      description: description,
-      url: origin,
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-      },
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': `${origin}/blog#webpage`,
+          url: `${origin}/blog`,
+          name: title,
+          description: description,
+          publisher: {
+            '@type': 'Organization',
+            name: 'Built By Discipline',
+            url: origin,
+          },
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: origin,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Athletic Journal',
+                item: `${origin}/blog`,
+              },
+            ],
+          },
+        },
+      ],
     };
-    scriptJsonLd.textContent = JSON.stringify(jsonLdData);
+    scriptJsonLd.textContent = JSON.stringify(jsonLdData, null, 2);
+  } else {
+    // Homepage Schema
+    const jsonLdData = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': `${origin}/#website`,
+          url: origin,
+          name: 'Built By Discipline',
+          description: description,
+          publisher: {
+            '@type': 'Organization',
+            name: 'Built By Discipline',
+            url: origin,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${origin}/favicon.ico`,
+            },
+          },
+        },
+        {
+          '@type': 'Organization',
+          '@id': `${origin}/#organization`,
+          name: 'Built By Discipline',
+          url: origin,
+          logo: `${origin}/favicon.ico`,
+          sameAs: [
+            'https://instagram.com/builtbydiscipline',
+            'https://youtube.com/@builtbydiscipline',
+            'https://x.com/builtbydisc',
+          ],
+        },
+        {
+          '@type': 'WebApplication',
+          '@id': `${origin}/#application`,
+          name: 'Built By Discipline Athletic Portal',
+          applicationCategory: 'HealthAndFitnessApplication',
+          operatingSystem: 'All',
+          description: description,
+          url: origin,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
+        },
+      ],
+    };
+    scriptJsonLd.textContent = JSON.stringify(jsonLdData, null, 2);
   }
 }
 

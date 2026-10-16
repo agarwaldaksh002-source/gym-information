@@ -4,9 +4,10 @@ import { BLOG_POSTS } from '../data/blogData.ts';
 
 interface FooterProps {
   onNavigate: (sectionOrPath: string) => void;
+  onOpenSeoAudit?: () => void;
 }
 
-export function Footer({ onNavigate }: FooterProps) {
+export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -168,10 +169,19 @@ export function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
 
-        {/* Bottom Tier: Simple Copyright Notice */}
+        {/* Bottom Tier: Simple Copyright Notice & SEO Audit link */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
           <p>© {new Date().getFullYear()} BUILT BY DISCIPLINE. ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            {onOpenSeoAudit && (
+              <button
+                onClick={onOpenSeoAudit}
+                className="text-[#C6FF00] hover:underline cursor-pointer flex items-center gap-1 font-mono text-[11px]"
+              >
+                [STEP 3: SEO & AEO AUDIT DOSSIER]
+              </button>
+            )}
+            <span aria-hidden="true" className="text-neutral-700">·</span>
             <span>PERFORMANCE LABS</span>
             <span aria-hidden="true" className="text-neutral-700">·</span>
             <span>NO COMPROMISE</span>

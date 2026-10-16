@@ -80,16 +80,33 @@ export interface BlogPost {
   seoTitle: string;
   metaDescription: string;
   publishDate: string;
+  modifiedDate: string;
   readTime: string;
   category: 'Strength' | 'Hypertrophy' | 'Conditioning' | 'Mobility' | 'Nutrition';
   primaryKeyword: string;
+  searchIntent: string;
   relatedKeywords: string[];
   image: string;
   alt: string;
   intro: string;
+  // Answer Engine Optimization (AEO) direct snippet: 40-60 words concise answer for AI overviews
+  aeoQuickAnswer: {
+    directAnswer: string;
+    keyTakeaways: string[];
+  };
+  author: {
+    name: string;
+    role: string;
+    credentials: string;
+  };
+  reviewedBy: {
+    name: string;
+    role: string;
+  };
   sections: BlogSection[];
   conclusion: string;
   faqs: [BlogFAQ, BlogFAQ];
   internalLinks: BlogInternalLink[];
   relatedSlugs: string[];
 }
+

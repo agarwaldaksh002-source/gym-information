@@ -17,6 +17,7 @@ import {
   NutritionCalculatorModal,
   GalleryLightboxModal,
 } from './components/Modals.tsx';
+import { SeoAuditModal } from './components/SeoAuditModal.tsx';
 import { GALLERY_ITEMS } from './data/fitnessData.ts';
 import { BLOG_POSTS } from './data/blogData.ts';
 import { WorkoutCategory, TrainingProgram, GalleryItem } from './types.ts';
@@ -37,6 +38,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<WorkoutCategory | null>(null);
   const [isNutritionOpen, setIsNutritionOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [isSeoAuditOpen, setIsSeoAuditOpen] = useState(false);
 
   // Sync browser back/forward buttons
   useEffect(() => {
@@ -51,9 +53,9 @@ export default function App() {
   useEffect(() => {
     if (currentPath === '/' || currentPath === '') {
       updatePageSEO({
-        title: 'BUILT BY DISCIPLINE | Premium Athletic Performance',
+        title: 'BUILT BY DISCIPLINE | Premium Athletic Performance & Training Programs',
         description:
-          'A world-class athletic fitness experience communicating strength, discipline, and high performance with cinematic editorial design.',
+          'Explore elite athletic training programs, strength periodization, and metabolic nutrition protocols designed for athletes built by relentless discipline.',
         canonicalPath: '/',
         image: '/images/hero_athlete.jpg',
       });
@@ -127,6 +129,7 @@ export default function App() {
         currentRoute={currentPath}
         onOpenJourney={() => setIsJourneyOpen(true)}
         onNavigate={navigateTo}
+        onOpenSeoAudit={() => setIsSeoAuditOpen(true)}
       />
 
       {/* Main Experience Routing */}
@@ -206,7 +209,10 @@ export default function App() {
       </main>
 
       {/* Footer with Cross-Page Links */}
-      <Footer onNavigate={navigateTo} />
+      <Footer
+        onNavigate={navigateTo}
+        onOpenSeoAudit={() => setIsSeoAuditOpen(true)}
+      />
 
       {/* Modals & Interactive Overlays */}
       <JourneyModal
@@ -239,6 +245,13 @@ export default function App() {
         currentIndex={lightboxIndex ?? 0}
         onClose={() => setLightboxIndex(null)}
         onNavigate={(newIdx) => setLightboxIndex(newIdx)}
+      />
+
+      {/* Step 3: SEO & AEO Assignment Dossier Modal */}
+      <SeoAuditModal
+        isOpen={isSeoAuditOpen}
+        onClose={() => setIsSeoAuditOpen(false)}
+        onNavigateToPost={(slug) => navigateTo(`/blog/${slug}`)}
       />
     </div>
   );

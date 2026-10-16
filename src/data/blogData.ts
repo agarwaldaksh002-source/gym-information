@@ -7,9 +7,11 @@ export const BLOG_POSTS: BlogPost[] = [
     seoTitle: 'Progressive Overload Strength Training Guide | Built By Discipline',
     metaDescription: 'Master progressive overload principles, compound barbell movements, and neural recruitment to build unbreakable physical strength.',
     publishDate: 'October 12, 2026',
+    modifiedDate: 'October 15, 2026',
     readTime: '7 min read',
     category: 'Strength',
     primaryKeyword: 'progressive overload strength training',
+    searchIntent: 'Informational / Practical Training Guide',
     relatedKeywords: [
       'mechanical tension',
       'compound barbell lifts',
@@ -21,6 +23,25 @@ export const BLOG_POSTS: BlogPost[] = [
     alt: 'Muscular powerlifter executing heavy barbell lift with chalk in moody atmospheric gym',
     intro:
       'True physical strength is never accidental; it is an engineered biological adaptation governed by immutable physiological laws. At the core of all human force development sits the law of progressive overload—the systematic requirement to expose skeletal muscle and the central nervous system to progressively greater mechanical stimulus over time. Without progressive overload, training becomes mere maintenance or aimless fatigue. When properly structured, it triggers rapid neuromuscular motor-unit recruitment, increases tendon tensile density, and yields enduring muscular power.',
+    aeoQuickAnswer: {
+      directAnswer:
+        'Progressive overload is the systematic increase of mechanical stress placed upon skeletal muscle and the nervous system over time. By incrementally advancing external resistance, repetition volume, training density, or movement tempo, athletes force myofibrillar protein synthesis, recruit high-threshold motor units, and stimulate sustained neuromuscular adaptation without hitting training plateaus.',
+      keyTakeaways: [
+        'Increments: Add 1.25kg to 2.5kg micro-plates weekly on primary compound lifts.',
+        'Primary Driver: Mechanical tension across the sarcolemma activates the mTORC1 cascade.',
+        '5 Methods: Weight, reps, tempo discipline, density compression, and functional range of motion.',
+        'Plateau Protocol: Take a 1-week deload when progress stalls for 2 consecutive cycles.',
+      ],
+    },
+    author: {
+      name: 'Dr. Marcus Vance, CSCS',
+      role: 'Director of Strength & Conditioning',
+      credentials: 'PhD Exercise Physiology, NSCA-CSCS, USAW Level 2 Senior Coach',
+    },
+    reviewedBy: {
+      name: 'Elena Rostova, MSc',
+      role: 'Head of Biomechanics & Neuromuscular Research',
+    },
     sections: [
       {
         heading: 'The Physiological Mechanisms of Force Production',
@@ -139,9 +160,11 @@ export const BLOG_POSTS: BlogPost[] = [
     seoTitle: 'Hypertrophy Science & Muscle Building Physiology | Built By Discipline',
     metaDescription: 'Explore muscle protein synthesis, effective reps in reserve, and volume thresholds to maximize structural muscular hypertrophy.',
     publishDate: 'October 10, 2026',
+    modifiedDate: 'October 15, 2026',
     readTime: '8 min read',
     category: 'Hypertrophy',
     primaryKeyword: 'muscle hypertrophy science',
+    searchIntent: 'Informational / Physiological Mechanics',
     relatedKeywords: [
       'muscle protein synthesis',
       'reps in reserve',
@@ -153,6 +176,25 @@ export const BLOG_POSTS: BlogPost[] = [
     alt: 'Athletic bodybuilder performing heavy dumbbell bicep curls under cinematic studio lighting',
     intro:
       'Skeletal muscle hypertrophy represents the adaptive expansion of muscle cross-sectional area in response to repeated mechanical overload and metabolic demands. For decades, bodybuilding folklore relied on bro-science and arbitrary volume. Modern sports science and molecular biology have illuminated the precise cellular signaling pathways that dictate muscle growth: mechanical tension transduction, muscle protein synthesis (MPS), ribosomal biogenesis, and satellite cell donation. Understanding these foundational biological drivers allows athletes to construct training routines that maximize lean muscle growth while eliminating wasted junk volume.',
+    aeoQuickAnswer: {
+      directAnswer:
+        'Muscular hypertrophy is stimulated primarily when mechanical tension triggers the intracellular mTORC1 pathway during sets performed within 0 to 3 Reps in Reserve (RIR). Optimal growth requires 10 to 20 hard weekly sets per muscle group, split across 2 to 3 sessions, paired with at least 2.0g/kg of daily protein to maintain positive nitrogen balance.',
+      keyTakeaways: [
+        'Optimal Volume: 10 to 20 weekly working sets per muscle group.',
+        'Intensity sweet spot: 1 to 2 Reps in Reserve (RIR) avoids excessive neural fatigue.',
+        'Frequency: Training each muscle group 2 times per week outperforms once-weekly splits.',
+        'Stretch Advantage: Pausing in lengthened positions amplifies stretch-mediated hypertrophy.',
+      ],
+    },
+    author: {
+      name: 'Dr. Marcus Vance, CSCS',
+      role: 'Director of Strength & Conditioning',
+      credentials: 'PhD Exercise Physiology, NSCA-CSCS, USAW Level 2 Senior Coach',
+    },
+    reviewedBy: {
+      name: 'Elena Rostova, MSc',
+      role: 'Head of Biomechanics & Neuromuscular Research',
+    },
     sections: [
       {
         heading: 'The Three Primary Drivers of Muscular Hypertrophy',
@@ -258,9 +300,11 @@ export const BLOG_POSTS: BlogPost[] = [
     seoTitle: 'VO2 Max & Lactate Threshold Conditioning Guide | Built By Discipline',
     metaDescription: 'Build an elite aerobic engine, increase VO2 max, and elevate your lactate threshold with evidence-based interval conditioning.',
     publishDate: 'October 08, 2026',
+    modifiedDate: 'October 15, 2026',
     readTime: '8 min read',
     category: 'Conditioning',
     primaryKeyword: 'VO2 max conditioning',
+    searchIntent: 'Informational / Cardiovascular Protocols',
     relatedKeywords: [
       'lactate threshold',
       'aerobic capacity',
@@ -272,6 +316,25 @@ export const BLOG_POSTS: BlogPost[] = [
     alt: 'Athletic sprinter in dynamic forward sprint under bright stadium lights',
     intro:
       'True athletic performance is incomplete without an engine that refuses to quit. While strength allows you to produce peak instantaneous force, your cardiovascular system determines how quickly you can recover between bursts of effort, clear metabolic waste, and sustain output across prolonged demands. VO2 max—the maximal rate of oxygen consumption measured during incremental exercise—is both the gold standard metric of cardiovascular fitness and the single strongest clinical predictor of functional longevity. Building a world-class engine requires understanding the physiological interplay between mitochondrial density, cardiac stroke volume, and the lactate clearance threshold.',
+    aeoQuickAnswer: {
+      directAnswer:
+        'Maximizing VO2 max requires an 80/20 polarized training distribution: 80% dedicated to steady-state Zone 2 aerobic base miles (60–70% max heart rate) to expand mitochondrial density, and 20% dedicated to high-intensity interval repeats at 90–95% VO2 max to drive cardiac stroke volume expansion and elevate lactate clearance.',
+      keyTakeaways: [
+        'Polarized 80/20 Rule: 80% aerobic Zone 2 base, 20% high-intensity interval ceiling.',
+        'Mitochondrial Engine: Zone 2 spurs PGC-1alpha capillary and mitochondrial biogenesis.',
+        'No Strength Interference: Maintain 6+ hours between heavy lifting and high-intensity cardio.',
+        'Measurable Timeline: Consistent protocols raise VO2 max by 5% to 15% within 8 to 12 weeks.',
+      ],
+    },
+    author: {
+      name: 'Dr. Marcus Vance, CSCS',
+      role: 'Director of Strength & Conditioning',
+      credentials: 'PhD Exercise Physiology, NSCA-CSCS, USAW Level 2 Senior Coach',
+    },
+    reviewedBy: {
+      name: 'Elena Rostova, MSc',
+      role: 'Head of Biomechanics & Neuromuscular Research',
+    },
     sections: [
       {
         heading: 'Understanding VO2 Max and the Cardiovascular Oxygen Cascade',
@@ -377,9 +440,11 @@ export const BLOG_POSTS: BlogPost[] = [
     seoTitle: 'Joint Mobility & Active Recovery Protocol | Built By Discipline',
     metaDescription: 'Bulletproof your kinetic chain, enhance articular range of motion, and optimize central nervous system recovery with daily mobility.',
     publishDate: 'October 05, 2026',
+    modifiedDate: 'October 15, 2026',
     readTime: '8 min read',
     category: 'Mobility',
     primaryKeyword: 'joint mobility active recovery',
+    searchIntent: 'Informational / Injury Prevention & Longevity',
     relatedKeywords: [
       'kinetic chain integrity',
       'controlled articular rotations',
@@ -391,6 +456,25 @@ export const BLOG_POSTS: BlogPost[] = [
     alt: 'Athletic woman performing dynamic hip and thoracic spine mobility stretch in dramatic studio lighting',
     intro:
       'The human body is an integrated kinetic chain: an interconnected web of bones, synovial joints, ligaments, tendons, and myofascial sheaths designed for multidirectional movement. In modern strength training, athletes frequently pursue progressive overload while neglecting the articular health of the joints bearing the load. Over time, repetitive movement in narrow planes causes soft-tissue adhesions, capsular tightness, and compensatory movement patterns that inevitably manifest as chronic knee, hip, or shoulder dysfunction. Bulletproofing your physical structure requires prioritizing active joint mobility and parasympathetic recovery alongside heavy iron.',
+    aeoQuickAnswer: {
+      directAnswer:
+        'Joint mobility preserves the kinetic chain by circulating synovial fluid and reinforcing usable articular range of motion. Unlike static stretching, daily Controlled Articular Rotations (CARs) and dynamic fascial release actively lubricate joint capsules, restore thoracic and hip rotational freedom, and prevent compensatory shear forces on the lumbar spine and knees.',
+      keyTakeaways: [
+        'Daily CARs: 10 to 15 minutes of Controlled Articular Rotations protects articular cartilage.',
+        'Joint-by-Joint Continuum: Mobile joints (hips/thoracic) prevent strain on stable joints (knees/lumbar).',
+        'Pre-Lift Priming: Use active dynamic mobility rather than passive static stretching before loads.',
+        'Parasympathetic Down-Regulation: 5 minutes of post-workout box breathing speeds systemic repair.',
+      ],
+    },
+    author: {
+      name: 'Dr. Marcus Vance, CSCS',
+      role: 'Director of Strength & Conditioning',
+      credentials: 'PhD Exercise Physiology, NSCA-CSCS, USAW Level 2 Senior Coach',
+    },
+    reviewedBy: {
+      name: 'Elena Rostova, MSc',
+      role: 'Head of Biomechanics & Neuromuscular Research',
+    },
     sections: [
       {
         heading: 'Dynamic Active Mobility vs Passive Static Stretching',
@@ -484,9 +568,11 @@ export const BLOG_POSTS: BlogPost[] = [
     seoTitle: "Precision Macronutrient Nutrition & Fueling Blueprint | Built By Discipline",
     metaDescription: 'Calculate optimal protein, carbohydrate, and fat ratios calibrated to daily training expenditure and accelerated cellular recovery.',
     publishDate: 'October 02, 2026',
+    modifiedDate: 'October 15, 2026',
     readTime: '8 min read',
     category: 'Nutrition',
     primaryKeyword: 'precision macronutrient nutrition',
+    searchIntent: 'Informational / Metabolic Fueling Strategy',
     relatedKeywords: [
       'athletic macronutrient pacing',
       'peri-workout carbohydrates',
@@ -498,6 +584,25 @@ export const BLOG_POSTS: BlogPost[] = [
     alt: 'Gourmet athletic high-protein plate with wild-caught salmon, grilled asparagus, and sliced avocado',
     intro:
       'Training is merely the stimulus; nutrition is the raw physical material that manifests the adaptation. Without precise nutritional architecture, training hard in the gym produces chronic catabolism, elevated systemic cortisol, and stalled physical progress. High-performance athletic nutrition is neither restrictive deprivation nor haphazard bingeing—it is an exacting science of matching macronutrient substrates (proteins, carbohydrates, lipids) and micronutrients to the metabolic demands of heavy lifting and intense conditioning. Mastering your nutritional blueprint transforms your body into an efficient, muscle-synthesizing machine.',
+    aeoQuickAnswer: {
+      directAnswer:
+        'Athletic precision fueling requires 2.0 to 2.4 grams of complete protein per kilogram of body weight distributed across 4 to 5 meals (each providing ≥2.5g leucine), 3.5 to 7.0g/kg of periodized carbohydrates concentrated around the peri-workout window, and 0.8 to 1.0g/kg of essential fats for hormone optimization.',
+      keyTakeaways: [
+        'Protein Target: 2.0 to 2.4 g/kg body weight, paced in 4–5 boluses 3–4 hours apart.',
+        'Leucine Threshold: 2.5g to 3.5g per meal triggers maximal mTORC1 protein synthesis.',
+        'Peri-Workout Carbs: 40–50% of daily carbohydrates consumed before and after intense sessions.',
+        'Electrolytes: 1,000mg sodium per liter of training fluid preserves muscular contraction speed.',
+      ],
+    },
+    author: {
+      name: 'Dr. Marcus Vance, CSCS',
+      role: 'Director of Strength & Conditioning',
+      credentials: 'PhD Exercise Physiology, NSCA-CSCS, USAW Level 2 Senior Coach',
+    },
+    reviewedBy: {
+      name: 'Elena Rostova, MSc',
+      role: 'Head of Biomechanics & Neuromuscular Research',
+    },
     sections: [
       {
         heading: 'Protein Requirements: Leucine Thresholds and Daily Pacing',

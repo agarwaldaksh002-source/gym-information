@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ArrowUpRight, Share2, Check, Bookmark, Calendar, Clock, ChevronRight } from 'lucide-react';
+import { Share2, Calendar, Clock, ChevronRight, ShieldCheck, UserCheck, Sparkles, HelpCircle } from 'lucide-react';
 import { BlogPost } from '../types.ts';
 import { BLOG_POSTS } from '../data/blogData.ts';
 import { SafeImage } from './SafeImage.tsx';
@@ -33,7 +33,6 @@ export function BlogPostPage({
           url: window.location.href,
         });
       } catch {
-        // Fallback to copy link
         navigator.clipboard.writeText(window.location.href);
       }
     } else {
@@ -45,12 +44,21 @@ export function BlogPostPage({
     <article className="min-h-screen bg-[#080808] text-white pt-32 pb-24">
       {/* Top Breadcrumb Bar */}
       <div className="max-w-4xl mx-auto px-6 sm:px-8 mb-8">
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-mono text-[11px] text-[#A0A0A0] uppercase tracking-wider overflow-x-auto whitespace-nowrap pb-2">
-          <button onClick={onNavigateHome} className="hover:text-white transition-colors cursor-pointer">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-2 font-mono text-[11px] text-[#A0A0A0] uppercase tracking-wider overflow-x-auto whitespace-nowrap pb-2"
+        >
+          <button
+            onClick={onNavigateHome}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
             HOME
           </button>
           <ChevronRight className="w-3 h-3 text-neutral-600 shrink-0" />
-          <button onClick={onNavigateToBlogIndex} className="hover:text-white transition-colors cursor-pointer">
+          <button
+            onClick={onNavigateToBlogIndex}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
             JOURNAL
           </button>
           <ChevronRight className="w-3 h-3 text-neutral-600 shrink-0" />
@@ -73,6 +81,8 @@ export function BlogPostPage({
             <Clock className="w-3.5 h-3.5 text-neutral-500" />
             {post.readTime}
           </span>
+          <span aria-hidden="true" className="text-white/20">·</span>
+          <span className="text-neutral-400">INTENT: {post.searchIntent}</span>
         </div>
 
         {/* Single Clear H1 Heading */}
@@ -85,30 +95,40 @@ export function BlogPostPage({
           {post.intro}
         </p>
 
-        {/* Author / Protocol Team & Share Action */}
-        <div className="flex items-center justify-between pt-6 border-t border-white/[0.08] text-xs font-mono text-[#A0A0A0]">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#161616] border border-[#C6FF00]/40 flex items-center justify-center font-bold text-[#C6FF00] text-xs">
-              BD
+        {/* E-E-A-T Author & Medical/Science Review Container */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-6 border-t border-white/[0.08] text-xs font-mono text-[#A0A0A0] gap-4">
+          <div className="flex items-start sm:items-center gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-[#161616] border border-[#C6FF00]/40 flex items-center justify-center font-bold text-[#C6FF00] text-xs shrink-0">
+              MV
             </div>
             <div>
-              <span className="text-white uppercase block font-semibold">BUILT BY DISCIPLINE RESEARCH</span>
-              <span className="text-[10px] text-neutral-500">EXERCISE PHYSIOLOGY & SPORTS SCIENCE</span>
+              <div className="flex items-center gap-2">
+                <span className="text-white uppercase font-bold tracking-wider">{post.author.name}</span>
+                <span className="flex items-center gap-1 text-[10px] text-[#C6FF00] bg-[#C6FF00]/10 border border-[#C6FF00]/25 px-1.5 py-0.5">
+                  <ShieldCheck className="w-3 h-3" />
+                  VERIFIED AUTHOR
+                </span>
+              </div>
+              <p className="text-[10px] text-neutral-400 font-normal mt-0.5">{post.author.credentials}</p>
+              <div className="flex items-center gap-1.5 text-[10px] text-neutral-500 mt-1">
+                <UserCheck className="w-3 h-3 text-[#C6FF00]" />
+                <span>Reviewed by {post.reviewedBy.name} ({post.reviewedBy.role})</span>
+              </div>
             </div>
           </div>
           <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 hover:text-[#C6FF00] transition-colors cursor-pointer px-3 py-1.5 bg-[#121212] border border-white/[0.08]"
+            className="self-start sm:self-center flex items-center gap-1.5 hover:text-[#C6FF00] transition-colors cursor-pointer px-3.5 py-1.5 bg-[#121212] border border-white/[0.08]"
             title="Share this article"
           >
             <Share2 className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">SHARE</span>
+            <span>SHARE</span>
           </button>
         </div>
       </header>
 
       {/* Featured Article Photographic Asset */}
-      <div className="max-w-5xl mx-auto px-6 sm:px-8 mb-12 sm:mb-16">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 mb-12 sm:mb-14">
         <div className="relative aspect-[16/9] overflow-hidden bg-[#121212] border border-white/[0.08] shadow-2xl">
           <SafeImage
             src={post.image}
@@ -127,6 +147,42 @@ export function BlogPostPage({
 
       {/* Main Editorial Article Content */}
       <div className="max-w-3xl mx-auto px-6 sm:px-8 space-y-12">
+        {/* ANSWER ENGINE OPTIMIZATION (AEO) DIRECT ANSWER EXTRACT */}
+        <section
+          aria-label="Direct Answer Overview"
+          className="bg-gradient-to-br from-[#141414] to-[#0c0c0c] border-2 border-[#C6FF00]/40 p-6 sm:p-8 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#C6FF00]/5 rounded-full blur-2xl pointer-events-none" />
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="w-4 h-4 text-[#C6FF00]" />
+            <span className="font-mono text-[11px] font-bold tracking-[0.25em] text-[#C6FF00] uppercase">
+              AEO DIRECT ANSWER / QUICK SNIPPET
+            </span>
+          </div>
+
+          <h2 className="font-condensed font-black text-2xl sm:text-3xl text-white uppercase tracking-tight mb-3">
+            What is the core protocol for {post.primaryKeyword}?
+          </h2>
+
+          <p className="aeo-direct-answer text-sm sm:text-base text-neutral-200 leading-relaxed font-normal mb-5">
+            {post.aeoQuickAnswer.directAnswer}
+          </p>
+
+          <div className="border-t border-white/[0.08] pt-4">
+            <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest block mb-2 font-semibold">
+              KEY DIRECTIVES & PROTOCOL METRICS:
+            </span>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-neutral-300">
+              {post.aeoQuickAnswer.keyTakeaways.map((point, kIdx) => (
+                <li key={kIdx} className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-[#C6FF00] rounded-full mt-1.5 shrink-0" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* Core Body Sections */}
         {post.sections.map((section, idx) => (
           <section key={idx} className="space-y-6">
@@ -151,7 +207,10 @@ export function BlogPostPage({
                       {sub.subheading}
                     </h3>
                     {sub.content.map((subP, spIdx) => (
-                      <p key={spIdx} className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal whitespace-pre-line">
+                      <p
+                        key={spIdx}
+                        className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal whitespace-pre-line"
+                      >
                         {subP}
                       </p>
                     ))}
@@ -162,8 +221,8 @@ export function BlogPostPage({
           </section>
         ))}
 
-        {/* Conclusion Section */}
-        <section className="bg-[#121212] border border-white/[0.08] p-6 sm:p-8 space-y-3 my-8">
+        {/* Conclusion / Summary Takeaway */}
+        <section className="summary-takeaway bg-[#121212] border border-white/[0.08] p-6 sm:p-8 space-y-3 my-8">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-[#C6FF00]" />
             <span className="font-mono text-[11px] font-semibold tracking-[0.25em] text-[#C6FF00] uppercase">
@@ -175,18 +234,21 @@ export function BlogPostPage({
           </p>
         </section>
 
-        {/* Frequently Asked Questions (2 FAQ H2 Headings with direct answers) */}
+        {/* Frequently Asked Questions (2 FAQ H2 Headings with direct answers for AEO) */}
         <section className="space-y-6 pt-6 border-t border-white/[0.08]">
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-1.5 h-1.5 bg-[#C6FF00]" />
+            <HelpCircle className="w-4 h-4 text-[#C6FF00]" />
             <span className="font-mono text-[11px] font-semibold tracking-[0.3em] text-[#C6FF00] uppercase">
-              FREQUENTLY ASKED QUESTIONS
+              FREQUENTLY ASKED QUESTIONS (AEO FAQS)
             </span>
           </div>
 
           <div className="space-y-8">
             {post.faqs.map((faq, fIdx) => (
-              <div key={fIdx} className="bg-[#111111] border border-white/[0.08] p-6 sm:p-7 space-y-3">
+              <div
+                key={fIdx}
+                className="bg-[#111111] border border-white/[0.08] p-6 sm:p-7 space-y-3"
+              >
                 {/* FAQ 1 & FAQ 2 formatted strictly as H2 headings */}
                 <h2 className="font-condensed font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
                   {faq.question}
@@ -203,7 +265,7 @@ export function BlogPostPage({
         {/* Internal Contextual Links */}
         <section className="bg-[#121212] border border-white/[0.08] p-6 sm:p-7 space-y-4 my-8">
           <span className="font-mono text-[11px] font-semibold tracking-[0.25em] text-[#C6FF00] uppercase block">
-            RELATED PROTOCOLS & INTEGRATED DIRECTIVES
+            RELATED PROTOCOLS & CROSS-PAGE ARCHITECTURE
           </span>
           <ul className="space-y-2.5 text-xs sm:text-sm text-neutral-300">
             {post.internalLinks.map((link, lIdx) => (
@@ -256,7 +318,7 @@ export function BlogPostPage({
               className="font-mono text-xs text-[#A0A0A0] hover:text-[#C6FF00] uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <span>ALL PROTOCOLS</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -288,7 +350,7 @@ export function BlogPostPage({
                     </h3>
                   </div>
                   <div className="text-xs font-mono text-[#C6FF00] uppercase flex items-center gap-1">
-                    READ PROTOCOL <ArrowUpRight className="w-3 h-3" />
+                    READ PROTOCOL <ChevronRight className="w-3 h-3" />
                   </div>
                 </div>
               </div>

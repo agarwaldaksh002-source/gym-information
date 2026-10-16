@@ -5,9 +5,15 @@ interface NavbarProps {
   currentRoute?: string;
   onOpenJourney: () => void;
   onNavigate: (sectionOrPath: string) => void;
+  onOpenSeoAudit?: () => void;
 }
 
-export function Navbar({ currentRoute = '/', onOpenJourney, onNavigate }: NavbarProps) {
+export function Navbar({
+  currentRoute = '/',
+  onOpenJourney,
+  onNavigate,
+  onOpenSeoAudit,
+}: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -94,7 +100,17 @@ export function Navbar({ currentRoute = '/', onOpenJourney, onNavigate }: Navbar
           </nav>
 
           {/* Zone 3: 1 primary action */}
-          <div className="hidden md:flex items-center gap-4 shrink-0">
+          <div className="hidden md:flex items-center gap-3 shrink-0">
+            {onOpenSeoAudit && (
+              <button
+                onClick={onOpenSeoAudit}
+                className="border border-white/20 hover:border-[#C6FF00] text-neutral-300 hover:text-[#C6FF00] font-mono text-[11px] px-3 py-2 transition-colors uppercase cursor-pointer flex items-center gap-1.5"
+                title="Open Step 3 SEO & AEO Assignment Audit"
+              >
+                <span className="w-1.5 h-1.5 bg-[#C6FF00] rounded-full animate-pulse" />
+                <span>SEO DOSSIER</span>
+              </button>
+            )}
             <button
               onClick={onOpenJourney}
               className="bg-[#C6FF00] hover:bg-[#b0e600] active:scale-[0.98] text-black font-condensed font-black px-5 py-2 text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-1.5 shadow-[0_0_20px_rgba(198,255,0,0.15)] hover:shadow-[0_0_25px_rgba(198,255,0,0.3)]"
@@ -146,7 +162,18 @@ export function Navbar({ currentRoute = '/', onOpenJourney, onNavigate }: Navbar
             ))}
           </nav>
 
-          <div className="pt-6 border-t border-white/10 flex flex-col gap-4">
+          <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
+            {onOpenSeoAudit && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenSeoAudit();
+                }}
+                className="w-full bg-[#161616] border border-[#C6FF00]/40 text-[#C6FF00] font-mono py-3 text-center tracking-wider text-xs uppercase cursor-pointer"
+              >
+                STEP 3: SEO & AEO AUDIT DOSSIER
+              </button>
+            )}
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
