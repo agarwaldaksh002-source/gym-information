@@ -2,6 +2,58 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "redirects": [
+    {
+      "source": "/article/:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/articles/:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/journal/:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/blog/progressive-overload",
+      "destination": "/blog/progressive-overload-strength-training-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hypertrophy",
+      "destination": "/blog/hypertrophy-muscle-building-science",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hypertrophy-science",
+      "destination": "/blog/hypertrophy-muscle-building-science",
+      "permanent": true
+    },
+    {
+      "source": "/blog/vo2-max",
+      "destination": "/blog/vo2-max-athletic-cardio-conditioning",
+      "permanent": true
+    },
+    {
+      "source": "/blog/joint-mobility",
+      "destination": "/blog/joint-mobility-active-recovery-protocol",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutrition",
+      "destination": "/blog/precision-macronutrient-nutrition-fueling",
+      "permanent": true
+    },
+    {
+      "source": "/blog/nutrition-fueling",
+      "destination": "/blog/precision-macronutrient-nutrition-fueling",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

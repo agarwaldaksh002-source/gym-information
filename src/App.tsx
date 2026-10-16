@@ -23,14 +23,63 @@ import { BLOG_POSTS } from './data/blogData.ts';
 import { WorkoutCategory, TrainingProgram, GalleryItem } from './types.ts';
 import { updatePageSEO } from './utils/seo.ts';
 
+const LEGACY_SLUG_MAP: Record<string, string> = {
+  'progressive-overload': 'progressive-overload-strength-training-guide',
+  'strength-training': 'progressive-overload-strength-training-guide',
+  'hypertrophy': 'hypertrophy-muscle-building-science',
+  'hypertrophy-science': 'hypertrophy-muscle-building-science',
+  'vo2-max': 'vo2-max-athletic-cardio-conditioning',
+  'cardio-conditioning': 'vo2-max-athletic-cardio-conditioning',
+  'joint-mobility': 'joint-mobility-active-recovery-protocol',
+  'mobility-recovery': 'joint-mobility-active-recovery-protocol',
+  'nutrition': 'precision-macronutrient-nutrition-fueling',
+  'nutrition-fueling': 'precision-macronutrient-nutrition-fueling',
+  'macronutrient-fueling': 'precision-macronutrient-nutrition-fueling',
+  'precision-nutrition': 'precision-macronutrient-nutrition-fueling',
+};
+
+function resolveCanonicalPath(): string {
+  if (typeof window === 'undefined') return '/';
+
+  const pathname = window.location.pathname || '/';
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // Check query parameter compatibility (?article=slug or ?post=slug or ?slug=slug)
+  const querySlug = searchParams.get('article') || searchParams.get('post') || searchParams.get('slug');
+  if (querySlug) {
+    const canonicalSlug = LEGACY_SLUG_MAP[querySlug] || querySlug;
+    const target = `/blog/${canonicalSlug}`;
+    window.history.replaceState({}, '', target);
+    return target;
+  }
+
+  // Check /article/:slug, /articles/:slug, or /journal/:slug
+  const legacyPrefixMatch = pathname.match(/^\/(?:article|articles|journal)\/(.+)$/);
+  if (legacyPrefixMatch) {
+    const rawSlug = legacyPrefixMatch[1].replace(/\/$/, '');
+    const canonicalSlug = LEGACY_SLUG_MAP[rawSlug] || rawSlug;
+    const target = `/blog/${canonicalSlug}`;
+    window.history.replaceState({}, '', target);
+    return target;
+  }
+
+  // Check legacy short slug under /blog/:slug
+  if (pathname.startsWith('/blog/')) {
+    const rawSlug = pathname.replace('/blog/', '').replace(/\/$/, '');
+    if (LEGACY_SLUG_MAP[rawSlug]) {
+      const canonicalSlug = LEGACY_SLUG_MAP[rawSlug];
+      const target = `/blog/${canonicalSlug}`;
+      window.history.replaceState({}, '', target);
+      return target;
+    }
+  }
+
+  return pathname;
+}
+
 export default function App() {
   // Routing state
-  const [currentPath, setCurrentPath] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      return window.location.pathname || '/';
-    }
-    return '/';
-  });
+  const [currentPath, setCurrentPath] = useState<string>(() => resolveCanonicalPath());
 
   // Modal states
   const [isJourneyOpen, setIsJourneyOpen] = useState(false);
@@ -43,7 +92,7 @@ export default function App() {
   // Sync browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(resolveCanonicalPath());
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);

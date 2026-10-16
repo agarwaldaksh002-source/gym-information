@@ -158,8 +158,10 @@ export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate(`blog/${post.slug}`);
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    onNavigate(`/blog/${post.slug}`);
+                  }
                 }}
                 className="hover:text-[#C6FF00] transition-colors truncate block"
               >
