@@ -24,53 +24,87 @@ import { WorkoutCategory, TrainingProgram, GalleryItem } from './types.ts';
 import { updatePageSEO } from './utils/seo.ts';
 
 const LEGACY_SLUG_MAP: Record<string, string> = {
+  // Article 1 aliases: Progressive Overload
   'progressive-overload': 'progressive-overload-strength-training-guide',
   'strength-training': 'progressive-overload-strength-training-guide',
+  'the-science-of-progressive-overload': 'progressive-overload-strength-training-guide',
+  'progressive-overload-guide': 'progressive-overload-strength-training-guide',
+  'strength-training-guide': 'progressive-overload-strength-training-guide',
+  'mechanical-tension': 'progressive-overload-strength-training-guide',
+
+  // Article 2 aliases: Hypertrophy
   'hypertrophy': 'hypertrophy-muscle-building-science',
   'hypertrophy-science': 'hypertrophy-muscle-building-science',
+  'muscle-building': 'hypertrophy-muscle-building-science',
+  'hypertrophy-physiology': 'hypertrophy-muscle-building-science',
+  'muscle-protein-synthesis': 'hypertrophy-muscle-building-science',
+  'hypertrophy-guide': 'hypertrophy-muscle-building-science',
+
+  // Article 3 aliases: VO2 Max & Cardio
   'vo2-max': 'vo2-max-athletic-cardio-conditioning',
   'cardio-conditioning': 'vo2-max-athletic-cardio-conditioning',
+  'athletic-cardio': 'vo2-max-athletic-cardio-conditioning',
+  'lactate-threshold': 'vo2-max-athletic-cardio-conditioning',
+  'vo2-max-conditioning': 'vo2-max-athletic-cardio-conditioning',
+  'conditioning-protocol': 'vo2-max-athletic-cardio-conditioning',
+
+  // Article 4 aliases: Joint Mobility & Active Recovery
   'joint-mobility': 'joint-mobility-active-recovery-protocol',
   'mobility-recovery': 'joint-mobility-active-recovery-protocol',
+  'active-recovery': 'joint-mobility-active-recovery-protocol',
+  'joint-mobility-protocol': 'joint-mobility-active-recovery-protocol',
+  'recovery-protocol': 'joint-mobility-active-recovery-protocol',
+  'kinetic-chain-longevity': 'joint-mobility-active-recovery-protocol',
+
+  // Article 5 aliases: Precision Macronutrient Fueling
   'nutrition': 'precision-macronutrient-nutrition-fueling',
   'nutrition-fueling': 'precision-macronutrient-nutrition-fueling',
   'macronutrient-fueling': 'precision-macronutrient-nutrition-fueling',
   'precision-nutrition': 'precision-macronutrient-nutrition-fueling',
+  'macronutrient-blueprint': 'precision-macronutrient-nutrition-fueling',
+  'precision-macronutrient': 'precision-macronutrient-nutrition-fueling',
 };
 
 function resolveCanonicalPath(): string {
   if (typeof window === 'undefined') return '/';
 
-  const pathname = window.location.pathname || '/';
+  const pathname = (window.location.pathname || '/').toLowerCase();
   const searchParams = new URLSearchParams(window.location.search);
 
-  // Check query parameter compatibility (?article=slug or ?post=slug or ?slug=slug)
-  const querySlug = searchParams.get('article') || searchParams.get('post') || searchParams.get('slug');
-  if (querySlug) {
+  // 1. Check query parameter compatibility (?article=slug or ?post=slug or ?slug=slug)
+  const rawQuery = searchParams.get('article') || searchParams.get('post') || searchParams.get('slug');
+  if (rawQuery) {
+    const querySlug = rawQuery.toLowerCase().trim();
     const canonicalSlug = LEGACY_SLUG_MAP[querySlug] || querySlug;
     const target = `/blog/${canonicalSlug}`;
     window.history.replaceState({}, '', target);
     return target;
   }
 
-  // Check /article/:slug, /articles/:slug, or /journal/:slug
+  // 2. Check legacy path prefixes: /article/:slug, /articles/:slug, or /journal/:slug
   const legacyPrefixMatch = pathname.match(/^\/(?:article|articles|journal)\/(.+)$/);
   if (legacyPrefixMatch) {
-    const rawSlug = legacyPrefixMatch[1].replace(/\/$/, '');
+    const rawSlug = legacyPrefixMatch[1].replace(/\/$/, '').trim();
     const canonicalSlug = LEGACY_SLUG_MAP[rawSlug] || rawSlug;
     const target = `/blog/${canonicalSlug}`;
     window.history.replaceState({}, '', target);
     return target;
   }
 
-  // Check legacy short slug under /blog/:slug
+  // 3. Check /blog/:slug with legacy short slug or trailing slash
   if (pathname.startsWith('/blog/')) {
-    const rawSlug = pathname.replace('/blog/', '').replace(/\/$/, '');
+    const rawSlug = pathname.replace('/blog/', '').replace(/\/$/, '').trim();
     if (LEGACY_SLUG_MAP[rawSlug]) {
       const canonicalSlug = LEGACY_SLUG_MAP[rawSlug];
       const target = `/blog/${canonicalSlug}`;
       window.history.replaceState({}, '', target);
       return target;
+    }
+    // Clean URL normalization (strips uppercase or trailing slash in address bar)
+    const normalizedTarget = `/blog/${rawSlug}`;
+    if (window.location.pathname !== normalizedTarget && rawSlug.length > 0) {
+      window.history.replaceState({}, '', normalizedTarget);
+      return normalizedTarget;
     }
   }
 
@@ -117,7 +151,7 @@ export default function App() {
         image: '/images/hero_athlete.jpg',
       });
     } else if (currentPath.startsWith('/blog/')) {
-      const slug = currentPath.replace('/blog/', '').replace(/\/$/, '');
+      const slug = currentPath.replace('/blog/', '').replace(/\/$/, '').toLowerCase();
       const post = BLOG_POSTS.find((p) => p.slug === slug);
       if (post) {
         updatePageSEO({
@@ -127,11 +161,18 @@ export default function App() {
           image: post.image,
           article: post,
         });
+      } else {
+        updatePageSEO({
+          title: '404 - Article Not Found | Built By Discipline',
+          description: 'The requested athletic research protocol does not exist or has been restructured.',
+          canonicalPath: currentPath,
+          image: '/images/hero_athlete.jpg',
+        });
       }
     }
   }, [currentPath]);
 
-  // Programmatic navigation
+  // Programmatic navigation for sections and general paths
   const navigateTo = useCallback((pathOrTarget: string) => {
     // If it's a section ID on home
     const sectionTargets = ['hero', 'workouts', 'programs', 'nutrition', 'gallery', 'journal'];
@@ -156,10 +197,34 @@ export default function App() {
     if (pathOrTarget === 'blog') targetPath = '/blog';
     else if (!pathOrTarget.startsWith('/')) targetPath = `/${pathOrTarget}`;
 
+    // Normalize /blog/:slug if needed
+    if (targetPath.startsWith('/blog/')) {
+      const raw = targetPath.replace('/blog/', '').replace(/\/$/, '').toLowerCase();
+      const resolved = LEGACY_SLUG_MAP[raw] || raw;
+      targetPath = `/blog/${resolved}`;
+    }
+
     window.history.pushState({}, '', targetPath);
     setCurrentPath(targetPath);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPath]);
+
+  // Dedicated helper to navigate to any blog post slug safely and cleanly
+  const navigateToPost = useCallback((slugOrPath: string) => {
+    const cleanSlug = slugOrPath
+      .replace(/^\/blog\//, '')
+      .replace(/^blog\//, '')
+      .replace(/^\//, '')
+      .replace(/\/$/, '')
+      .toLowerCase();
+    
+    const targetSlug = LEGACY_SLUG_MAP[cleanSlug] || cleanSlug;
+    const targetPath = `/blog/${targetSlug}`;
+    
+    window.history.pushState({}, '', targetPath);
+    setCurrentPath(targetPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleOpenLightbox = useCallback((_item: GalleryItem, index: number) => {
     setLightboxIndex(index);
@@ -168,7 +233,7 @@ export default function App() {
   // Determine active view
   const isBlogIndex = currentPath === '/blog' || currentPath === '/blog/';
   const isBlogPost = currentPath.startsWith('/blog/') && currentPath.length > 6;
-  const currentPostSlug = isBlogPost ? currentPath.replace('/blog/', '').replace(/\/$/, '') : null;
+  const currentPostSlug = isBlogPost ? currentPath.replace('/blog/', '').replace(/\/$/, '').toLowerCase() : null;
   const activePost = currentPostSlug ? BLOG_POSTS.find((p) => p.slug === currentPostSlug) : null;
 
   return (
@@ -186,7 +251,7 @@ export default function App() {
         {isBlogIndex ? (
           /* Dedicated /blog page */
           <BlogIndexPage
-            onNavigateToPost={(slug) => navigateTo(`/blog/${slug}`)}
+            onNavigateToPost={navigateToPost}
             onNavigateHome={() => navigateTo('hero')}
           />
         ) : isBlogPost ? (
@@ -194,7 +259,7 @@ export default function App() {
           activePost ? (
             <BlogPostPage
               post={activePost}
-              onNavigateToPost={(slug) => navigateTo(`/blog/${slug}`)}
+              onNavigateToPost={navigateToPost}
               onNavigateToBlogIndex={() => navigateTo('blog')}
               onNavigateHome={() => navigateTo('hero')}
             />
@@ -210,12 +275,20 @@ export default function App() {
               <p className="text-xs sm:text-sm text-[#A0A0A0] max-w-md mb-8">
                 The requested research protocol does not exist or has been restructured.
               </p>
-              <button
-                onClick={() => navigateTo('blog')}
-                className="px-8 py-3.5 bg-[#C6FF00] text-black font-condensed font-black text-xs uppercase tracking-widest cursor-pointer"
-              >
-                RETURN TO JOURNAL ARCHIVE
-              </button>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <button
+                  onClick={() => navigateTo('blog')}
+                  className="px-8 py-3.5 bg-[#C6FF00] text-black font-condensed font-black text-xs uppercase tracking-widest cursor-pointer hover:bg-[#b0e600] transition-colors"
+                >
+                  RETURN TO JOURNAL ARCHIVE
+                </button>
+                <button
+                  onClick={() => navigateTo('hero')}
+                  className="px-8 py-3.5 border border-white/20 hover:border-white text-white font-condensed font-black text-xs uppercase tracking-widest cursor-pointer transition-colors"
+                >
+                  RETURN TO HOME
+                </button>
+              </div>
             </div>
           )
         ) : (
@@ -247,7 +320,7 @@ export default function App() {
 
             {/* Athletic Journal Editorial Preview */}
             <BlogSection
-              onNavigateToPost={(slug) => navigateTo(`/blog/${slug}`)}
+              onNavigateToPost={navigateToPost}
               onNavigateToBlogIndex={() => navigateTo('blog')}
             />
 
@@ -300,7 +373,7 @@ export default function App() {
       <SeoAuditModal
         isOpen={isSeoAuditOpen}
         onClose={() => setIsSeoAuditOpen(false)}
-        onNavigateToPost={(slug) => navigateTo(`/blog/${slug}`)}
+        onNavigateToPost={navigateToPost}
       />
     </div>
   );

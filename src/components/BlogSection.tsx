@@ -8,8 +8,8 @@ interface BlogSectionProps {
 }
 
 export function BlogSection({ onNavigateToPost, onNavigateToBlogIndex }: BlogSectionProps) {
-  // Display the first 3 highlighted articles on the homepage
-  const featuredPosts = BLOG_POSTS.slice(0, 3);
+  // Display all editorial research articles
+  const featuredPosts = BLOG_POSTS;
 
   return (
     <section id="journal" className="relative w-full py-28 sm:py-36 bg-[#080808] border-t border-white/[0.06]">

@@ -276,17 +276,19 @@ export function BlogPostPage({
                   <a
                     href={link.url}
                     onClick={(e) => {
-                      e.preventDefault();
-                      if (link.url.startsWith('/blog/')) {
-                        const targetSlug = link.url.replace('/blog/', '');
-                        onNavigateToPost(targetSlug);
-                      } else if (link.url.startsWith('/#')) {
-                        const targetId = link.url.replace('/#', '');
-                        onNavigateHome();
-                        setTimeout(() => {
-                          const el = document.getElementById(targetId);
-                          if (el) el.scrollIntoView({ behavior: 'smooth' });
-                        }, 100);
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                        e.preventDefault();
+                        if (link.url.startsWith('/blog/')) {
+                          const targetSlug = link.url.replace('/blog/', '');
+                          onNavigateToPost(targetSlug);
+                        } else if (link.url.startsWith('/#')) {
+                          const targetId = link.url.replace('/#', '');
+                          onNavigateHome();
+                          setTimeout(() => {
+                            const el = document.getElementById(targetId);
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                          }, 100);
+                        }
                       }
                     }}
                     className="text-white hover:text-[#C6FF00] underline underline-offset-4 font-semibold transition-colors cursor-pointer"

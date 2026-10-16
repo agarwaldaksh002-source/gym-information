@@ -2,6 +2,7 @@ import { BlogPost } from '../types.ts';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 'progressive-overload-strength-training-guide',
     slug: 'progressive-overload-strength-training-guide',
     title: 'The Science of Progressive Overload: Master Strength Training and Mechanical Tension',
     seoTitle: 'Progressive Overload Strength Training Guide | Built By Discipline',
@@ -181,6 +182,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    id: 'hypertrophy-muscle-building-science',
     slug: 'hypertrophy-muscle-building-science',
     title: 'Hypertrophy Physiology: The Science of Muscle Protein Synthesis and Volume',
     seoTitle: 'Hypertrophy Science & Muscle Building Physiology | Built By Discipline',
@@ -331,6 +333,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    id: 'vo2-max-athletic-cardio-conditioning',
     slug: 'vo2-max-athletic-cardio-conditioning',
     title: 'Maximizing VO2 Max and Lactate Threshold: The Elite Athlete Conditioning Protocol',
     seoTitle: 'VO2 Max & Lactate Threshold Conditioning Guide | Built By Discipline',
@@ -481,6 +484,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    id: 'joint-mobility-active-recovery-protocol',
     slug: 'joint-mobility-active-recovery-protocol',
     title: 'Joint Mobility and Active Recovery: Bulletproofing the Kinetic Chain for Longevity',
     seoTitle: 'Joint Mobility & Active Recovery Protocol | Built By Discipline',
@@ -619,6 +623,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    id: 'precision-macronutrient-nutrition-fueling',
     slug: 'precision-macronutrient-nutrition-fueling',
     title: "Precision Macronutrient Fueling: The Athlete's Blueprint for Performance and Recovery",
     seoTitle: "Precision Macronutrient Nutrition & Fueling Blueprint | Built By Discipline",
