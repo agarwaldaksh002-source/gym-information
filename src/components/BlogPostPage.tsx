@@ -234,7 +234,7 @@ export function BlogPostPage({
           </p>
         </section>
 
-        {/* Frequently Asked Questions (2 FAQ H2 Headings with direct answers for AEO) */}
+        {/* Frequently Asked Questions (H2 Headings with direct answers for AEO) */}
         <section className="space-y-6 pt-6 border-t border-white/[0.08]">
           <div className="flex items-center gap-2 mb-2">
             <HelpCircle className="w-4 h-4 text-[#C6FF00]" />
@@ -324,10 +324,16 @@ export function BlogPostPage({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((rel) => (
-              <div
+              <a
                 key={rel.slug}
-                onClick={() => onNavigateToPost(rel.slug)}
-                className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-300 cursor-pointer"
+                href={`/blog/${rel.slug}`}
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    onNavigateToPost(rel.slug);
+                  }
+                }}
+                className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-300 cursor-pointer text-left"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#161616]">
                   <SafeImage
@@ -353,7 +359,7 @@ export function BlogPostPage({
                     READ PROTOCOL <ChevronRight className="w-3 h-3" />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>

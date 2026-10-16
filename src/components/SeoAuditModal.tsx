@@ -57,7 +57,7 @@ export function SeoAuditModal({ isOpen, onClose, onNavigateToPost }: SeoAuditMod
       metaDescription: BLOG_POSTS[0].metaDescription,
       metaLength: BLOG_POSTS[0].metaDescription.length,
       h1: BLOG_POSTS[0].title,
-      headingsHierarchy: 'H1: 1 | H2: 5 | H3: 7',
+      headingsHierarchy: 'H1: 1 | H2: 9 | H3: 8',
       aeoStatus: '48-word direct answer snippet + 4 key takeaway metrics',
       schemaTypes: ['Article', 'FAQPage', 'BreadcrumbList', 'SpeakableSpecification'],
       internalLinksOut: 4,
@@ -74,10 +74,10 @@ export function SeoAuditModal({ isOpen, onClose, onNavigateToPost }: SeoAuditMod
       metaDescription: BLOG_POSTS[1].metaDescription,
       metaLength: BLOG_POSTS[1].metaDescription.length,
       h1: BLOG_POSTS[1].title,
-      headingsHierarchy: 'H1: 1 | H2: 6 | H3: 4',
+      headingsHierarchy: 'H1: 1 | H2: 9 | H3: 5',
       aeoStatus: '51-word direct answer snippet + 4 key takeaway metrics',
       schemaTypes: ['Article', 'FAQPage', 'BreadcrumbList', 'SpeakableSpecification'],
-      internalLinksOut: 4,
+      internalLinksOut: 3,
     },
     {
       pageName: 'Target Page 4: Conditioning Article',
@@ -91,10 +91,10 @@ export function SeoAuditModal({ isOpen, onClose, onNavigateToPost }: SeoAuditMod
       metaDescription: BLOG_POSTS[2].metaDescription,
       metaLength: BLOG_POSTS[2].metaDescription.length,
       h1: BLOG_POSTS[2].title,
-      headingsHierarchy: 'H1: 1 | H2: 6 | H3: 4',
+      headingsHierarchy: 'H1: 1 | H2: 9 | H3: 5',
       aeoStatus: '49-word direct answer snippet + 4 key takeaway metrics',
       schemaTypes: ['Article', 'FAQPage', 'BreadcrumbList', 'SpeakableSpecification'],
-      internalLinksOut: 4,
+      internalLinksOut: 3,
     },
   ];
 
@@ -358,7 +358,7 @@ Domain: https://builtbydiscipline.com
                   <div className="bg-[#1a1a1a] p-3 border-l-2 border-[#C6FF00]">
                     <span className="text-[#C6FF00] block font-bold mb-1">3. FAQ H2 PAIRING</span>
                     <span className="text-neutral-400 font-sans">
-                      Two dedicated H2 query headings per article matched 1:1 with JSON-LD FAQPage entities.
+                      Dedicated H2 query headings per article matched 1:1 with JSON-LD FAQPage entities.
                     </span>
                   </div>
                 </div>

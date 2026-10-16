@@ -43,11 +43,17 @@ export function BlogSection({ onNavigateToPost, onNavigateToBlogIndex }: BlogSec
 
         {/* 3 Editorial Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {featuredPosts.map((post, idx) => (
-            <article
+          {featuredPosts.map((post) => (
+            <a
               key={post.slug}
-              onClick={() => onNavigateToPost(post.slug)}
-              className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-500 ease-athletic cursor-pointer shadow-lg"
+              href={`/blog/${post.slug}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onNavigateToPost(post.slug);
+                }
+              }}
+              className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-500 ease-athletic cursor-pointer shadow-lg text-left"
             >
               {/* Thumbnail Image */}
               <div className="relative aspect-[16/10] overflow-hidden bg-[#161616]">
@@ -92,7 +98,7 @@ export function BlogSection({ onNavigateToPost, onNavigateToBlogIndex }: BlogSec
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>

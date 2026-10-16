@@ -105,7 +105,7 @@ export interface BlogPost {
   };
   sections: BlogSection[];
   conclusion: string;
-  faqs: [BlogFAQ, BlogFAQ];
+  faqs: BlogFAQ[];
   internalLinks: BlogInternalLink[];
   relatedSlugs: string[];
 }
