@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/blogData.ts';
 
 interface FooterProps {
@@ -125,24 +126,36 @@ export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
 
             {/* Quick Navigation Links */}
             <div className="flex flex-wrap items-center gap-6 mt-10 text-xs font-medium text-[#A0A0A0]">
-              <button onClick={() => onNavigate('hero')} className="hover:text-white transition-colors cursor-pointer uppercase">
+              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Home
-              </button>
-              <button onClick={() => onNavigate('workouts')} className="hover:text-white transition-colors cursor-pointer uppercase">
+              </Link>
+              <Link to="/workout" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Workouts
-              </button>
-              <button onClick={() => onNavigate('programs')} className="hover:text-white transition-colors cursor-pointer uppercase">
+              </Link>
+              <Link to="/programs" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Programs
-              </button>
-              <button onClick={() => onNavigate('nutrition')} className="hover:text-white transition-colors cursor-pointer uppercase">
+              </Link>
+              <Link to="/nutrition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
                 Nutrition
-              </button>
-              <button onClick={() => onNavigate('blog')} className="text-white hover:text-[#C6FF00] transition-colors cursor-pointer uppercase font-semibold">
+              </Link>
+              <Link to="/blog" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white hover:text-[#C6FF00] transition-colors cursor-pointer uppercase font-semibold">
                 Journal
-              </button>
-              <button onClick={() => onNavigate('gallery')} className="hover:text-white transition-colors cursor-pointer uppercase">
+              </Link>
+              <a
+                href="/#gallery"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.location.pathname !== '/') {
+                    window.location.href = '/#gallery';
+                  } else {
+                    const el = document.getElementById('gallery');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="hover:text-white transition-colors cursor-pointer uppercase"
+              >
                 Gallery
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -154,19 +167,14 @@ export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
           </span>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs text-[#A0A0A0]">
             {BLOG_POSTS.map((post) => (
-              <a
+              <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
-                onClick={(e) => {
-                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                    e.preventDefault();
-                    onNavigate(`/blog/${post.slug}`);
-                  }
-                }}
+                to={`/blog/${post.slug}`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="hover:text-[#C6FF00] transition-colors truncate block"
               >
                 • {post.title}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

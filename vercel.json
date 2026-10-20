@@ -77,6 +77,11 @@
       "source": "/blog/precision-macronutrient-nutrition-fueling",
       "destination": "/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery",
       "permanent": true
+    },
+    {
+      "source": "/workouts",
+      "destination": "/workout",
+      "permanent": true
     }
   ],
   "rewrites": [

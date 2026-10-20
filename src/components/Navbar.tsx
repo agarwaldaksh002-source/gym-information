@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface NavbarProps {
   currentRoute?: string;
   onOpenJourney: () => void;
-  onNavigate: (sectionOrPath: string) => void;
+  onNavigate?: (sectionOrPath: string) => void;
   onOpenSeoAudit?: () => void;
 }
 
 export function Navbar({
-  currentRoute = '/',
   onOpenJourney,
-  onNavigate,
   onOpenSeoAudit,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const currentPath = location.pathname;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,34 +41,58 @@ export function Navbar({
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'HOME', target: 'hero' },
-    { label: 'WORKOUTS', target: 'workouts' },
-    { label: 'PROGRAMS', target: 'programs' },
-    { label: 'NUTRITION', target: 'nutrition' },
-    { label: 'JOURNAL', target: 'blog' },
-    { label: 'ABOUT', target: 'gallery' },
+    { label: 'HOME', path: '/' },
+    { label: 'WORKOUT', path: '/workout' },
+    { label: 'PROGRAMS', path: '/programs' },
+    { label: 'NUTRITION', path: '/nutrition' },
+    { label: 'JOURNAL', path: '/blog' },
+    { label: 'ABOUT', path: '/#gallery' },
   ];
 
-  const handleLinkClick = (target: string) => {
+  const handleAboutClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     setMobileMenuOpen(false);
-    onNavigate(target);
+    if (currentPath !== '/') {
+      navigate('/#gallery');
+      setTimeout(() => {
+        const el = document.getElementById('gallery');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    } else {
+      const el = document.getElementById('gallery');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  const isJournalActive = currentRoute.startsWith('/blog');
+  const isRouteActive = (path: string) => {
+    if (path === '/') return currentPath === '/' && !location.hash;
+    if (path === '/workout') return currentPath === '/workout' || currentPath === '/workouts';
+    if (path === '/programs') return currentPath === '/programs';
+    if (path === '/nutrition') return currentPath === '/nutrition';
+    if (path === '/blog') return currentPath.startsWith('/blog');
+    if (path === '/#gallery') return location.hash === '#gallery';
+    return false;
+  };
+
+  const isScrolledOrInner = isScrolled || currentPath !== '/';
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-athletic ${
-          isScrolled || isJournalActive
+          isScrolledOrInner
             ? 'bg-[#080808]/92 backdrop-blur-md border-b border-white/[0.08] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
             : 'bg-transparent py-6 sm:py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between gap-8">
           {/* Zone 1: Single text element wordmark */}
-          <button
-            onClick={() => handleLinkClick('hero')}
+          <Link
+            to="/"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="text-left group cursor-pointer focus:outline-none"
             aria-label="Built by Discipline Home"
           >
@@ -74,27 +101,48 @@ export function Navbar({
                 BUILT BY DISCIPLINE
               </span>
             </div>
-          </button>
+          </Link>
 
           {/* Zone 2: Concise single-line text navigation links */}
           <nav className="hidden md:flex items-center gap-8 lg:gap-9 text-[11px] font-mono tracking-[0.2em] text-[#A0A0A0]">
             {navLinks.map((link) => {
-              const isCurrent = link.target === 'blog' ? isJournalActive : currentRoute === '/' && link.target === 'hero';
+              const isActive = isRouteActive(link.path);
+              if (link.path === '/#gallery') {
+                return (
+                  <a
+                    key={link.path}
+                    href="/#gallery"
+                    onClick={handleAboutClick}
+                    className={`hover:text-white transition-colors relative py-1 focus:outline-none cursor-pointer whitespace-nowrap shrink-0 group ${
+                      isActive ? 'text-white' : ''
+                    }`}
+                  >
+                    {link.label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#C6FF00] transition-all duration-300 ease-athletic ${
+                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                    />
+                  </a>
+                );
+              }
+
               return (
-                <button
-                  key={link.target}
-                  onClick={() => handleLinkClick(link.target)}
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className={`hover:text-white transition-colors relative py-1 focus:outline-none cursor-pointer whitespace-nowrap shrink-0 group ${
-                    isCurrent ? 'text-white' : ''
+                    isActive ? 'text-white' : ''
                   }`}
                 >
                   {link.label}
                   <span
                     className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#C6FF00] transition-all duration-300 ease-athletic ${
-                      isCurrent ? 'w-full' : 'w-0 group-hover:w-full'
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   />
-                </button>
+                </Link>
               );
             })}
           </nav>
@@ -150,16 +198,36 @@ export function Navbar({
           </div>
 
           <nav className="flex flex-col gap-5 py-8">
-            {navLinks.map((link, idx) => (
-              <button
-                key={link.target}
-                onClick={() => handleLinkClick(link.target)}
-                className="text-left font-condensed font-black text-3xl sm:text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
-              >
-                <span className="text-xs font-mono text-[#C6FF00] font-normal">0{idx + 1}</span>
-                <span>{link.label}</span>
-              </button>
-            ))}
+            {navLinks.map((link, idx) => {
+              if (link.path === '/#gallery') {
+                return (
+                  <a
+                    key={link.path}
+                    href="/#gallery"
+                    onClick={handleAboutClick}
+                    className="text-left font-condensed font-black text-3xl sm:text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
+                  >
+                    <span className="text-xs font-mono text-[#C6FF00] font-normal">0{idx + 1}</span>
+                    <span>{link.label}</span>
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-left font-condensed font-black text-3xl sm:text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
+                >
+                  <span className="text-xs font-mono text-[#C6FF00] font-normal">0{idx + 1}</span>
+                  <span>{link.label}</span>
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
