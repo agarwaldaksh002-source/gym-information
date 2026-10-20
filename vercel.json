@@ -20,37 +20,62 @@
     },
     {
       "source": "/blog/progressive-overload",
-      "destination": "/blog/progressive-overload-strength-training-guide",
+      "destination": "/blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension",
+      "permanent": true
+    },
+    {
+      "source": "/blog/progressive-overload-strength-training-guide",
+      "destination": "/blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension",
       "permanent": true
     },
     {
       "source": "/blog/hypertrophy",
-      "destination": "/blog/hypertrophy-muscle-building-science",
+      "destination": "/blog/hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume",
       "permanent": true
     },
     {
       "source": "/blog/hypertrophy-science",
-      "destination": "/blog/hypertrophy-muscle-building-science",
+      "destination": "/blog/hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hypertrophy-muscle-building-science",
+      "destination": "/blog/hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume",
       "permanent": true
     },
     {
       "source": "/blog/vo2-max",
-      "destination": "/blog/vo2-max-athletic-cardio-conditioning",
+      "destination": "/blog/maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol",
+      "permanent": true
+    },
+    {
+      "source": "/blog/vo2-max-athletic-cardio-conditioning",
+      "destination": "/blog/maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol",
       "permanent": true
     },
     {
       "source": "/blog/joint-mobility",
-      "destination": "/blog/joint-mobility-active-recovery-protocol",
+      "destination": "/blog/joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity",
+      "permanent": true
+    },
+    {
+      "source": "/blog/joint-mobility-active-recovery-protocol",
+      "destination": "/blog/joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity",
       "permanent": true
     },
     {
       "source": "/blog/nutrition",
-      "destination": "/blog/precision-macronutrient-nutrition-fueling",
+      "destination": "/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery",
       "permanent": true
     },
     {
       "source": "/blog/nutrition-fueling",
-      "destination": "/blog/precision-macronutrient-nutrition-fueling",
+      "destination": "/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery",
+      "permanent": true
+    },
+    {
+      "source": "/blog/precision-macronutrient-nutrition-fueling",
+      "destination": "/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery",
       "permanent": true
     }
   ],

@@ -499,10 +499,10 @@ Domain: https://builtbydiscipline.com
                 </p>
                 <div className="flex flex-wrap gap-2 text-[11px] font-mono">
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/progressive-overload-strength-training-guide ⇄ /blog/hypertrophy-muscle-building-science
+                    /blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension ⇄ /blog/hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume
                   </span>
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/vo2-max-athletic-cardio-conditioning ⇄ /blog/joint-mobility-active-recovery-protocol
+                    /blog/maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol ⇄ /blog/joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity
                   </span>
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
                     All Protocols ⇄ /#programs & /#nutrition

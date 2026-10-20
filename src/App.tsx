@@ -19,51 +19,9 @@ import {
 } from './components/Modals.tsx';
 import { SeoAuditModal } from './components/SeoAuditModal.tsx';
 import { GALLERY_ITEMS } from './data/fitnessData.ts';
-import { BLOG_POSTS } from './data/blogData.ts';
+import { BLOG_POSTS, resolvePostSlug, findPostBySlug } from './data/blogData.ts';
 import { WorkoutCategory, TrainingProgram, GalleryItem } from './types.ts';
 import { updatePageSEO } from './utils/seo.ts';
-
-const LEGACY_SLUG_MAP: Record<string, string> = {
-  // Article 1 aliases: Progressive Overload
-  'progressive-overload': 'progressive-overload-strength-training-guide',
-  'strength-training': 'progressive-overload-strength-training-guide',
-  'the-science-of-progressive-overload': 'progressive-overload-strength-training-guide',
-  'progressive-overload-guide': 'progressive-overload-strength-training-guide',
-  'strength-training-guide': 'progressive-overload-strength-training-guide',
-  'mechanical-tension': 'progressive-overload-strength-training-guide',
-
-  // Article 2 aliases: Hypertrophy
-  'hypertrophy': 'hypertrophy-muscle-building-science',
-  'hypertrophy-science': 'hypertrophy-muscle-building-science',
-  'muscle-building': 'hypertrophy-muscle-building-science',
-  'hypertrophy-physiology': 'hypertrophy-muscle-building-science',
-  'muscle-protein-synthesis': 'hypertrophy-muscle-building-science',
-  'hypertrophy-guide': 'hypertrophy-muscle-building-science',
-
-  // Article 3 aliases: VO2 Max & Cardio
-  'vo2-max': 'vo2-max-athletic-cardio-conditioning',
-  'cardio-conditioning': 'vo2-max-athletic-cardio-conditioning',
-  'athletic-cardio': 'vo2-max-athletic-cardio-conditioning',
-  'lactate-threshold': 'vo2-max-athletic-cardio-conditioning',
-  'vo2-max-conditioning': 'vo2-max-athletic-cardio-conditioning',
-  'conditioning-protocol': 'vo2-max-athletic-cardio-conditioning',
-
-  // Article 4 aliases: Joint Mobility & Active Recovery
-  'joint-mobility': 'joint-mobility-active-recovery-protocol',
-  'mobility-recovery': 'joint-mobility-active-recovery-protocol',
-  'active-recovery': 'joint-mobility-active-recovery-protocol',
-  'joint-mobility-protocol': 'joint-mobility-active-recovery-protocol',
-  'recovery-protocol': 'joint-mobility-active-recovery-protocol',
-  'kinetic-chain-longevity': 'joint-mobility-active-recovery-protocol',
-
-  // Article 5 aliases: Precision Macronutrient Fueling
-  'nutrition': 'precision-macronutrient-nutrition-fueling',
-  'nutrition-fueling': 'precision-macronutrient-nutrition-fueling',
-  'macronutrient-fueling': 'precision-macronutrient-nutrition-fueling',
-  'precision-nutrition': 'precision-macronutrient-nutrition-fueling',
-  'macronutrient-blueprint': 'precision-macronutrient-nutrition-fueling',
-  'precision-macronutrient': 'precision-macronutrient-nutrition-fueling',
-};
 
 function resolveCanonicalPath(): string {
   if (typeof window === 'undefined') return '/';
@@ -74,8 +32,7 @@ function resolveCanonicalPath(): string {
   // 1. Check query parameter compatibility (?article=slug or ?post=slug or ?slug=slug)
   const rawQuery = searchParams.get('article') || searchParams.get('post') || searchParams.get('slug');
   if (rawQuery) {
-    const querySlug = rawQuery.toLowerCase().trim();
-    const canonicalSlug = LEGACY_SLUG_MAP[querySlug] || querySlug;
+    const canonicalSlug = resolvePostSlug(rawQuery);
     const target = `/blog/${canonicalSlug}`;
     window.history.replaceState({}, '', target);
     return target;
@@ -85,7 +42,7 @@ function resolveCanonicalPath(): string {
   const legacyPrefixMatch = pathname.match(/^\/(?:article|articles|journal)\/(.+)$/);
   if (legacyPrefixMatch) {
     const rawSlug = legacyPrefixMatch[1].replace(/\/$/, '').trim();
-    const canonicalSlug = LEGACY_SLUG_MAP[rawSlug] || rawSlug;
+    const canonicalSlug = resolvePostSlug(rawSlug);
     const target = `/blog/${canonicalSlug}`;
     window.history.replaceState({}, '', target);
     return target;
@@ -94,18 +51,18 @@ function resolveCanonicalPath(): string {
   // 3. Check /blog/:slug with legacy short slug or trailing slash
   if (pathname.startsWith('/blog/')) {
     const rawSlug = pathname.replace('/blog/', '').replace(/\/$/, '').trim();
-    if (LEGACY_SLUG_MAP[rawSlug]) {
-      const canonicalSlug = LEGACY_SLUG_MAP[rawSlug];
-      const target = `/blog/${canonicalSlug}`;
-      window.history.replaceState({}, '', target);
-      return target;
+    if (!rawSlug) {
+      if (window.location.pathname !== '/blog') {
+        window.history.replaceState({}, '', '/blog');
+      }
+      return '/blog';
     }
-    // Clean URL normalization (strips uppercase or trailing slash in address bar)
-    const normalizedTarget = `/blog/${rawSlug}`;
-    if (window.location.pathname !== normalizedTarget && rawSlug.length > 0) {
+    const canonicalSlug = resolvePostSlug(rawSlug);
+    const normalizedTarget = `/blog/${canonicalSlug}`;
+    if (window.location.pathname !== normalizedTarget) {
       window.history.replaceState({}, '', normalizedTarget);
-      return normalizedTarget;
     }
+    return normalizedTarget;
   }
 
   return pathname;
@@ -152,7 +109,7 @@ export default function App() {
       });
     } else if (currentPath.startsWith('/blog/')) {
       const slug = currentPath.replace('/blog/', '').replace(/\/$/, '').toLowerCase();
-      const post = BLOG_POSTS.find((p) => p.slug === slug);
+      const post = findPostBySlug(slug);
       if (post) {
         updatePageSEO({
           title: post.seoTitle,
@@ -200,7 +157,7 @@ export default function App() {
     // Normalize /blog/:slug if needed
     if (targetPath.startsWith('/blog/')) {
       const raw = targetPath.replace('/blog/', '').replace(/\/$/, '').toLowerCase();
-      const resolved = LEGACY_SLUG_MAP[raw] || raw;
+      const resolved = resolvePostSlug(raw);
       targetPath = `/blog/${resolved}`;
     }
 
@@ -211,14 +168,8 @@ export default function App() {
 
   // Dedicated helper to navigate to any blog post slug safely and cleanly
   const navigateToPost = useCallback((slugOrPath: string) => {
-    const cleanSlug = slugOrPath
-      .replace(/^\/blog\//, '')
-      .replace(/^blog\//, '')
-      .replace(/^\//, '')
-      .replace(/\/$/, '')
-      .toLowerCase();
-    
-    const targetSlug = LEGACY_SLUG_MAP[cleanSlug] || cleanSlug;
+    const post = findPostBySlug(slugOrPath);
+    const targetSlug = post ? post.slug : resolvePostSlug(slugOrPath);
     const targetPath = `/blog/${targetSlug}`;
     
     window.history.pushState({}, '', targetPath);
@@ -234,7 +185,7 @@ export default function App() {
   const isBlogIndex = currentPath === '/blog' || currentPath === '/blog/';
   const isBlogPost = currentPath.startsWith('/blog/') && currentPath.length > 6;
   const currentPostSlug = isBlogPost ? currentPath.replace('/blog/', '').replace(/\/$/, '').toLowerCase() : null;
-  const activePost = currentPostSlug ? BLOG_POSTS.find((p) => p.slug === currentPostSlug) : null;
+  const activePost = currentPostSlug ? findPostBySlug(currentPostSlug) : null;
 
   return (
     <div className="min-h-screen bg-[#080808] text-white font-sans-clean selection:bg-[#C6FF00] selection:text-black">

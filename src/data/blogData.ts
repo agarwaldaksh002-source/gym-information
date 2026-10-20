@@ -2,8 +2,8 @@ import { BlogPost } from '../types.ts';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: 'progressive-overload-strength-training-guide',
-    slug: 'progressive-overload-strength-training-guide',
+    id: 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+    slug: 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
     title: 'The Science of Progressive Overload: Master Strength Training and Mechanical Tension',
     seoTitle: 'Progressive Overload Strength Training Guide | Built By Discipline',
     metaDescription: 'Master progressive overload principles, compound barbell movements, and neural recruitment to build unbreakable physical strength.',
@@ -156,12 +156,12 @@ export const BLOG_POSTS: BlogPost[] = [
     internalLinks: [
       {
         anchorText: 'hypertrophic muscle growth',
-        url: '/blog/hypertrophy-muscle-building-science',
+        url: '/blog/hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
         context: 'Explore how mechanical tension drives',
       },
       {
         anchorText: 'athletic macronutrient intake',
-        url: '/blog/precision-macronutrient-nutrition-fueling',
+        url: '/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
         context: 'Fuel maximum central nervous system recovery through',
       },
       {
@@ -176,14 +176,14 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     relatedSlugs: [
-      'hypertrophy-muscle-building-science',
-      'precision-macronutrient-nutrition-fueling',
-      'joint-mobility-active-recovery-protocol',
+      'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+      'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+      'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
     ],
   },
   {
-    id: 'hypertrophy-muscle-building-science',
-    slug: 'hypertrophy-muscle-building-science',
+    id: 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+    slug: 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
     title: 'Hypertrophy Physiology: The Science of Muscle Protein Synthesis and Volume',
     seoTitle: 'Hypertrophy Science & Muscle Building Physiology | Built By Discipline',
     metaDescription: 'Explore muscle protein synthesis, effective reps in reserve, and volume thresholds to maximize structural muscular hypertrophy.',
@@ -312,12 +312,12 @@ export const BLOG_POSTS: BlogPost[] = [
     internalLinks: [
       {
         anchorText: 'progressive overload strength protocols',
-        url: '/blog/progressive-overload-strength-training-guide',
+        url: '/blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
         context: 'Combine mechanical tension with proven',
       },
       {
         anchorText: 'essential protein and amino acid fueling',
-        url: '/blog/precision-macronutrient-nutrition-fueling',
+        url: '/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
         context: 'Support muscle protein synthesis with',
       },
       {
@@ -327,14 +327,14 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     relatedSlugs: [
-      'progressive-overload-strength-training-guide',
-      'precision-macronutrient-nutrition-fueling',
-      'joint-mobility-active-recovery-protocol',
+      'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+      'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+      'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
     ],
   },
   {
-    id: 'vo2-max-athletic-cardio-conditioning',
-    slug: 'vo2-max-athletic-cardio-conditioning',
+    id: 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+    slug: 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
     title: 'Maximizing VO2 Max and Lactate Threshold: The Elite Athlete Conditioning Protocol',
     seoTitle: 'VO2 Max & Lactate Threshold Conditioning Guide | Built By Discipline',
     metaDescription: 'Build an elite aerobic engine, increase VO2 max, and elevate your lactate threshold with evidence-based interval conditioning.',
@@ -463,12 +463,12 @@ export const BLOG_POSTS: BlogPost[] = [
     internalLinks: [
       {
         anchorText: 'joint mobility and active recovery',
-        url: '/blog/joint-mobility-active-recovery-protocol',
+        url: '/blog/joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
         context: 'Accelerate cardiovascular tissue clearance with',
       },
       {
         anchorText: 'glycogen replenishment protocols',
-        url: '/blog/precision-macronutrient-nutrition-fueling',
+        url: '/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
         context: 'Replenish depleted muscle substrates using',
       },
       {
@@ -478,14 +478,14 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     relatedSlugs: [
-      'joint-mobility-active-recovery-protocol',
-      'precision-macronutrient-nutrition-fueling',
-      'progressive-overload-strength-training-guide',
+      'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+      'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+      'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
     ],
   },
   {
-    id: 'joint-mobility-active-recovery-protocol',
-    slug: 'joint-mobility-active-recovery-protocol',
+    id: 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+    slug: 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
     title: 'Joint Mobility and Active Recovery: Bulletproofing the Kinetic Chain for Longevity',
     seoTitle: 'Joint Mobility & Active Recovery Protocol | Built By Discipline',
     metaDescription: 'Bulletproof your kinetic chain, enhance articular range of motion, and optimize central nervous system recovery with daily mobility.',
@@ -602,12 +602,12 @@ export const BLOG_POSTS: BlogPost[] = [
     internalLinks: [
       {
         anchorText: 'heavy compound barbell lifting',
-        url: '/blog/progressive-overload-strength-training-guide',
+        url: '/blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
         context: 'Protect joint capsules before engaging in',
       },
       {
         anchorText: 'aerobic conditioning sessions',
-        url: '/blog/vo2-max-athletic-cardio-conditioning',
+        url: '/blog/maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
         context: 'Facilitate systemic lymphatic clearance during',
       },
       {
@@ -617,14 +617,14 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     relatedSlugs: [
-      'progressive-overload-strength-training-guide',
-      'vo2-max-athletic-cardio-conditioning',
-      'hypertrophy-muscle-building-science',
+      'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+      'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+      'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
     ],
   },
   {
-    id: 'precision-macronutrient-nutrition-fueling',
-    slug: 'precision-macronutrient-nutrition-fueling',
+    id: 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+    slug: 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
     title: "Precision Macronutrient Fueling: The Athlete's Blueprint for Performance and Recovery",
     seoTitle: "Precision Macronutrient Nutrition & Fueling Blueprint | Built By Discipline",
     metaDescription: 'Calculate optimal protein, carbohydrate, and fat ratios calibrated to daily training expenditure and accelerated cellular recovery.',
@@ -746,12 +746,12 @@ export const BLOG_POSTS: BlogPost[] = [
     internalLinks: [
       {
         anchorText: 'muscle protein synthesis pathways',
-        url: '/blog/hypertrophy-muscle-building-science',
+        url: '/blog/hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
         context: 'Learn the molecular mechanics behind',
       },
       {
         anchorText: 'high-intensity strength output',
-        url: '/blog/progressive-overload-strength-training-guide',
+        url: '/blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
         context: 'Fuel maximum central nervous system force for',
       },
       {
@@ -761,9 +761,81 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     relatedSlugs: [
-      'hypertrophy-muscle-building-science',
-      'progressive-overload-strength-training-guide',
-      'vo2-max-athletic-cardio-conditioning',
+      'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+      'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+      'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
     ],
   },
 ];
+
+// Helper to generate a clean, permanent URL-safe slug from any title
+export function slugifyTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Complete legacy and alias dictionary mapping all previous or shortened URLs to canonical title-based slugs
+export const BLOG_ALIASES: Record<string, string> = {
+  // Article 1: The Science of Progressive Overload
+  'progressive-overload': 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+  'progressive-overload-strength-training-guide': 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+  'strength-training': 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+  'strength-training-guide': 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+  'the-science-of-progressive-overload': 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+  'mechanical-tension': 'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension',
+
+  // Article 2: Hypertrophy Physiology
+  'hypertrophy': 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+  'hypertrophy-science': 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+  'hypertrophy-muscle-building-science': 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+  'muscle-building': 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+  'muscle-protein-synthesis': 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+  'hypertrophy-physiology': 'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume',
+
+  // Article 3: Maximizing VO2 Max and Lactate Threshold
+  'vo2-max': 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+  'vo2-max-athletic-cardio-conditioning': 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+  'cardio-conditioning': 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+  'athletic-cardio': 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+  'lactate-threshold': 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+  'vo2-max-conditioning': 'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol',
+
+  // Article 4: Joint Mobility and Active Recovery
+  'joint-mobility': 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+  'joint-mobility-active-recovery-protocol': 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+  'mobility-recovery': 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+  'active-recovery': 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+  'joint-mobility-protocol': 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+  'recovery-protocol': 'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity',
+
+  // Article 5: Precision Macronutrient Fueling
+  'nutrition': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+  'precision-macronutrient-nutrition-fueling': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+  'nutrition-fueling': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+  'macronutrient-fueling': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+  'precision-nutrition': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+  'macronutrient-blueprint': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+  'precision-macronutrient': 'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery',
+};
+
+export function resolvePostSlug(rawSlug: string): string {
+  const clean = rawSlug
+    .toLowerCase()
+    .trim()
+    .replace(/^\/blog\//, '')
+    .replace(/^blog\//, '')
+    .replace(/^\//, '')
+    .replace(/\/$/, '');
+  if (!clean) return '';
+  return BLOG_ALIASES[clean] || clean;
+}
+
+export function findPostBySlug(rawSlug: string): BlogPost | undefined {
+  const targetSlug = resolvePostSlug(rawSlug);
+  if (!targetSlug) return undefined;
+  return BLOG_POSTS.find((p) => p.slug === targetSlug || p.id === targetSlug || p.slug === rawSlug);
+}
+
