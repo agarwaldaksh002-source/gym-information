@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { TRAINING_PROGRAMS } from '../data/fitnessData.ts';
 import { TrainingProgram } from '../types.ts';
 import { SafeImage } from './SafeImage.tsx';
@@ -24,9 +25,18 @@ export function ProgramsSection({ onSelectProgram }: ProgramsSectionProps) {
               FEATURED TRAINING PROGRAMS
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[#A0A0A0] max-w-sm tracking-wide leading-relaxed font-normal">
-            Periodized architectures developed for concrete, repeatable physical adaptation.
-          </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <p className="text-xs sm:text-sm text-[#A0A0A0] max-w-sm tracking-wide leading-relaxed font-normal">
+              Periodized architectures developed for concrete, repeatable physical adaptation.
+            </p>
+            <Link
+              to="/programs"
+              className="font-mono text-xs text-[#C6FF00] hover:text-white uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+            >
+              <span>EXPLORE ALL PROGRAMS</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* 3 Editorial Program Cards */}

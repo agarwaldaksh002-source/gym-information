@@ -161,24 +161,24 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         anchorText: 'athletic macronutrient intake',
-        url: '/blog/precision-macronutrient-fueling',
+        url: '/blog/precision-nutrition-fueling',
         context: 'Fuel maximum central nervous system recovery through',
       },
       {
         anchorText: 'periodized strength training programs',
-        url: '/#programs',
+        url: '/programs',
         context: 'Explore our dedicated 12-week blueprint in',
       },
       {
         anchorText: 'compound workout categories',
-        url: '/#workouts',
+        url: '/workout',
         context: 'Review core lifting movements across our',
       },
     ],
     relatedSlugs: [
       'hypertrophy-muscle-growth',
-      'precision-macronutrient-fueling',
-      'joint-mobility-active-recovery',
+      'precision-nutrition-fueling',
+      'joint-mobility-recovery',
     ],
   },
   {
@@ -317,24 +317,24 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         anchorText: 'essential protein and amino acid fueling',
-        url: '/blog/precision-macronutrient-fueling',
+        url: '/blog/precision-nutrition-fueling',
         context: 'Support muscle protein synthesis with',
       },
       {
         anchorText: 'structured muscle building programs',
-        url: '/#programs',
+        url: '/programs',
         context: 'Implement these hypertrophy principles via our',
       },
     ],
     relatedSlugs: [
       'progressive-overload-strength',
-      'precision-macronutrient-fueling',
-      'joint-mobility-active-recovery',
+      'precision-nutrition-fueling',
+      'joint-mobility-recovery',
     ],
   },
   {
-    id: 'vo2-max-lactate-threshold',
-    slug: 'vo2-max-lactate-threshold',
+    id: 'vo2-max-conditioning',
+    slug: 'vo2-max-conditioning',
     title: 'Maximizing VO2 Max and Lactate Threshold: The Elite Athlete Conditioning Protocol',
     seoTitle: 'VO2 Max & Lactate Threshold Conditioning Guide | Built By Discipline',
     metaDescription: 'Build an elite aerobic engine, increase VO2 max, and elevate your lactate threshold with evidence-based interval conditioning.',
@@ -463,29 +463,29 @@ export const BLOG_POSTS: BlogPost[] = [
     internalLinks: [
       {
         anchorText: 'joint mobility and active recovery',
-        url: '/blog/joint-mobility-active-recovery',
+        url: '/blog/joint-mobility-recovery',
         context: 'Accelerate cardiovascular tissue clearance with',
       },
       {
         anchorText: 'glycogen replenishment protocols',
-        url: '/blog/precision-macronutrient-fueling',
+        url: '/blog/precision-nutrition-fueling',
         context: 'Replenish depleted muscle substrates using',
       },
       {
         anchorText: 'athletic cardio disciplines',
-        url: '/#workouts',
+        url: '/workout',
         context: 'Explore conditioning routines in our',
       },
     ],
     relatedSlugs: [
-      'joint-mobility-active-recovery',
-      'precision-macronutrient-fueling',
+      'joint-mobility-recovery',
+      'precision-nutrition-fueling',
       'progressive-overload-strength',
     ],
   },
   {
-    id: 'joint-mobility-active-recovery',
-    slug: 'joint-mobility-active-recovery',
+    id: 'joint-mobility-recovery',
+    slug: 'joint-mobility-recovery',
     title: 'Joint Mobility and Active Recovery: Bulletproofing the Kinetic Chain for Longevity',
     seoTitle: 'Joint Mobility & Active Recovery Protocol | Built By Discipline',
     metaDescription: 'Bulletproof your kinetic chain, enhance articular range of motion, and optimize central nervous system recovery with daily mobility.',
@@ -607,24 +607,24 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         anchorText: 'aerobic conditioning sessions',
-        url: '/blog/vo2-max-lactate-threshold',
+        url: '/blog/vo2-max-conditioning',
         context: 'Facilitate systemic lymphatic clearance during',
       },
       {
         anchorText: 'dynamic mobility vectors',
-        url: '/#workouts',
+        url: '/workout',
         context: 'Review daily movement routines within our',
       },
     ],
     relatedSlugs: [
       'progressive-overload-strength',
-      'vo2-max-lactate-threshold',
+      'vo2-max-conditioning',
       'hypertrophy-muscle-growth',
     ],
   },
   {
-    id: 'precision-macronutrient-fueling',
-    slug: 'precision-macronutrient-fueling',
+    id: 'precision-nutrition-fueling',
+    slug: 'precision-nutrition-fueling',
     title: "Precision Macronutrient Fueling: The Athlete's Blueprint for Performance and Recovery",
     seoTitle: "Precision Macronutrient Nutrition & Fueling Blueprint | Built By Discipline",
     metaDescription: 'Calculate optimal protein, carbohydrate, and fat ratios calibrated to daily training expenditure and accelerated cellular recovery.',
@@ -756,14 +756,14 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         anchorText: 'interactive macronutrient calculator',
-        url: '/#nutrition',
+        url: '/nutrition',
         context: 'Calculate your exact personal targets using our',
       },
     ],
     relatedSlugs: [
       'hypertrophy-muscle-growth',
       'progressive-overload-strength',
-      'vo2-max-lactate-threshold',
+      'vo2-max-conditioning',
     ],
   },
 ];
@@ -779,7 +779,7 @@ export function slugifyTitle(title: string): string {
 
 // Complete legacy and alias dictionary mapping all previous or shortened URLs to canonical short slugs
 export const BLOG_ALIASES: Record<string, string> = {
-  // Article 1: Progressive Overload Strength
+  // Article 1: Progressive Overload Strength (/blog/progressive-overload-strength)
   'the-science-of-progressive-overload-master-strength-training-and-mechanical-tension': 'progressive-overload-strength',
   'progressive-overload-strength-training-guide': 'progressive-overload-strength',
   'progressive-overload': 'progressive-overload-strength',
@@ -790,7 +790,7 @@ export const BLOG_ALIASES: Record<string, string> = {
   'the-science-of-progressive-overload': 'progressive-overload-strength',
   'mechanical-tension': 'progressive-overload-strength',
 
-  // Article 2: Hypertrophy Muscle Growth
+  // Article 2: Hypertrophy Muscle Growth (/blog/hypertrophy-muscle-growth)
   'hypertrophy-physiology-the-science-of-muscle-protein-synthesis-and-volume': 'hypertrophy-muscle-growth',
   'hypertrophy-muscle-building-science': 'hypertrophy-muscle-growth',
   'hypertrophy-science': 'hypertrophy-muscle-growth',
@@ -800,33 +800,35 @@ export const BLOG_ALIASES: Record<string, string> = {
   'hypertrophy-physiology': 'hypertrophy-muscle-growth',
   'hypertrophy-volume': 'hypertrophy-muscle-growth',
 
-  // Article 3: VO2 Max & Lactate Threshold
-  'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol': 'vo2-max-lactate-threshold',
-  'vo2-max-athletic-cardio-conditioning': 'vo2-max-lactate-threshold',
-  'vo2-max': 'vo2-max-lactate-threshold',
-  'cardio-conditioning': 'vo2-max-lactate-threshold',
-  'athletic-cardio': 'vo2-max-lactate-threshold',
-  'lactate-threshold': 'vo2-max-lactate-threshold',
-  'vo2-max-conditioning': 'vo2-max-lactate-threshold',
+  // Article 3: VO2 Max Conditioning (/blog/vo2-max-conditioning)
+  'maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol': 'vo2-max-conditioning',
+  'vo2-max-athletic-cardio-conditioning': 'vo2-max-conditioning',
+  'vo2-max-lactate-threshold': 'vo2-max-conditioning',
+  'vo2-max': 'vo2-max-conditioning',
+  'cardio-conditioning': 'vo2-max-conditioning',
+  'athletic-cardio': 'vo2-max-conditioning',
+  'lactate-threshold': 'vo2-max-conditioning',
 
-  // Article 4: Joint Mobility & Active Recovery
-  'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity': 'joint-mobility-active-recovery',
-  'joint-mobility-active-recovery-protocol': 'joint-mobility-active-recovery',
-  'joint-mobility': 'joint-mobility-active-recovery',
-  'mobility-recovery': 'joint-mobility-active-recovery',
-  'active-recovery': 'joint-mobility-active-recovery',
-  'joint-mobility-protocol': 'joint-mobility-active-recovery',
-  'recovery-protocol': 'joint-mobility-active-recovery',
+  // Article 4: Joint Mobility Recovery (/blog/joint-mobility-recovery)
+  'joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity': 'joint-mobility-recovery',
+  'joint-mobility-active-recovery-protocol': 'joint-mobility-recovery',
+  'joint-mobility-active-recovery': 'joint-mobility-recovery',
+  'joint-mobility': 'joint-mobility-recovery',
+  'mobility-recovery': 'joint-mobility-recovery',
+  'active-recovery': 'joint-mobility-recovery',
+  'joint-mobility-protocol': 'joint-mobility-recovery',
+  'recovery-protocol': 'joint-mobility-recovery',
 
-  // Article 5: Precision Macronutrient Fueling
-  'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery': 'precision-macronutrient-fueling',
-  'precision-macronutrient-nutrition-fueling': 'precision-macronutrient-fueling',
-  'nutrition-fueling': 'precision-macronutrient-fueling',
-  'macronutrient-fueling': 'precision-macronutrient-fueling',
-  'precision-nutrition': 'precision-macronutrient-fueling',
-  'macronutrient-blueprint': 'precision-macronutrient-fueling',
-  'precision-macronutrient': 'precision-macronutrient-fueling',
-  'nutrition': 'precision-macronutrient-fueling',
+  // Article 5: Precision Nutrition Fueling (/blog/precision-nutrition-fueling)
+  'precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery': 'precision-nutrition-fueling',
+  'precision-macronutrient-nutrition-fueling': 'precision-nutrition-fueling',
+  'precision-macronutrient-fueling': 'precision-nutrition-fueling',
+  'nutrition-fueling': 'precision-nutrition-fueling',
+  'macronutrient-fueling': 'precision-nutrition-fueling',
+  'precision-nutrition': 'precision-nutrition-fueling',
+  'macronutrient-blueprint': 'precision-nutrition-fueling',
+  'precision-macronutrient': 'precision-nutrition-fueling',
+  'nutrition': 'precision-nutrition-fueling',
 };
 
 export function resolvePostSlug(rawSlug: string): string {

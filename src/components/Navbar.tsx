@@ -89,10 +89,7 @@ export function Navbar({
           {/* Zone 1: Single text element wordmark */}
           <Link
             to="/"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onClick={() => setMobileMenuOpen(false)}
             className="text-left group cursor-pointer focus:outline-none"
             aria-label="Built by Discipline Home"
           >
@@ -131,7 +128,6 @@ export function Navbar({
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className={`hover:text-white transition-colors relative py-1 focus:outline-none cursor-pointer whitespace-nowrap shrink-0 group ${
                     isActive ? 'text-white' : ''
                   }`}
@@ -217,10 +213,7 @@ export function Navbar({
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={() => setMobileMenuOpen(false)}
                   className="text-left font-condensed font-black text-3xl sm:text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
                 >
                   <span className="text-xs font-mono text-[#C6FF00] font-normal">0{idx + 1}</span>

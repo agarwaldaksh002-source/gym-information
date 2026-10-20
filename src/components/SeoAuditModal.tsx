@@ -495,17 +495,17 @@ Domain: https://builtbydiscipline.com
                   INTERNAL LINKING GRAPH ARCHITECTURE
                 </span>
                 <p className="text-xs text-neutral-300 leading-relaxed font-sans mb-3">
-                  All target pages form an interconnected topical cluster. Strength links to Hypertrophy and Nutrition; Hypertrophy links to Strength and Nutrition; Conditioning links to Mobility and Nutrition; and all pages link contextually back to homepage training categories (<span className="text-[#C6FF00]">/#workouts</span>) and periodized plans (<span className="text-[#C6FF00]">/#programs</span>).
+                  All target pages form an interconnected topical cluster. Strength links to Hypertrophy and Nutrition; Hypertrophy links to Strength and Nutrition; Conditioning links to Mobility and Nutrition; and all pages link contextually back to core training categories (<span className="text-[#C6FF00]">/workout</span>), periodized plans (<span className="text-[#C6FF00]">/programs</span>), and precision nutrition (<span className="text-[#C6FF00]">/nutrition</span>).
                 </p>
                 <div className="flex flex-wrap gap-2 text-[11px] font-mono">
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
                     /blog/progressive-overload-strength ⇄ /blog/hypertrophy-muscle-growth
                   </span>
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/vo2-max-lactate-threshold ⇄ /blog/joint-mobility-active-recovery
+                    /blog/vo2-max-conditioning ⇄ /blog/joint-mobility-recovery
                   </span>
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/precision-macronutrient-fueling ⇄ /nutrition
+                    /blog/precision-nutrition-fueling ⇄ /nutrition
                   </span>
                 </div>
               </div>

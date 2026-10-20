@@ -1,13 +1,14 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/blogData.ts';
 import { SafeImage } from './SafeImage.tsx';
 
 interface BlogSectionProps {
-  onNavigateToPost: (slug: string) => void;
-  onNavigateToBlogIndex: () => void;
+  onNavigateToPost?: (slug: string) => void;
+  onNavigateToBlogIndex?: () => void;
 }
 
-export function BlogSection({ onNavigateToPost, onNavigateToBlogIndex }: BlogSectionProps) {
+export function BlogSection({ onNavigateToPost }: BlogSectionProps) {
   // Display all editorial research articles
   const featuredPosts = BLOG_POSTS;
 
@@ -31,27 +32,24 @@ export function BlogSection({ onNavigateToPost, onNavigateToBlogIndex }: BlogSec
             <p className="text-xs sm:text-sm text-[#A0A0A0] max-w-sm tracking-wide leading-relaxed font-normal">
               Peer-reviewed exercise physiology, progressive overload mechanics, and metabolic fueling.
             </p>
-            <button
-              onClick={onNavigateToBlogIndex}
+            <Link
+              to="/blog"
               className="font-mono text-xs text-[#C6FF00] hover:text-white uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
             >
               <span>VIEW ALL PROTOCOLS</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
           </div>
         </div>
 
         {/* 3 Editorial Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {featuredPosts.map((post) => (
-            <a
+            <Link
               key={post.slug}
-              href={`/blog/${post.slug}`}
-              onClick={(e) => {
-                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                  e.preventDefault();
-                  onNavigateToPost(post.slug);
-                }
+              to={`/blog/${post.slug}`}
+              onClick={() => {
+                if (onNavigateToPost) onNavigateToPost(post.slug);
               }}
               className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-500 ease-athletic cursor-pointer shadow-lg text-left"
             >
@@ -98,7 +96,7 @@ export function BlogSection({ onNavigateToPost, onNavigateToBlogIndex }: BlogSec
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

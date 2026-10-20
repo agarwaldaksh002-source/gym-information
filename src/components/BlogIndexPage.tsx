@@ -1,14 +1,15 @@
 import { useState, useMemo } from 'react';
 import { ArrowLeft, ArrowUpRight, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../data/blogData.ts';
 import { SafeImage } from './SafeImage.tsx';
 
 interface BlogIndexPageProps {
-  onNavigateToPost: (slug: string) => void;
-  onNavigateHome: () => void;
+  onNavigateToPost?: (slug: string) => void;
+  onNavigateHome?: () => void;
 }
 
-export function BlogIndexPage({ onNavigateToPost, onNavigateHome }: BlogIndexPageProps) {
+export function BlogIndexPage({ onNavigateToPost }: BlogIndexPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -31,13 +32,13 @@ export function BlogIndexPage({ onNavigateToPost, onNavigateHome }: BlogIndexPag
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         {/* Navigation Breadcrumb & Back */}
         <div className="flex items-center justify-between pb-8 border-b border-white/[0.08] mb-12">
-          <button
-            onClick={onNavigateHome}
+          <Link
+            to="/"
             className="font-mono text-xs text-[#A0A0A0] hover:text-[#C6FF00] uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>RETURN TO HOME</span>
-          </button>
+          </Link>
           <div className="font-mono text-xs text-neutral-500 uppercase tracking-widest hidden sm:block">
             BUILT BY DISCIPLINE / RESEARCH ARCHIVE
           </div>
@@ -95,14 +96,11 @@ export function BlogIndexPage({ onNavigateToPost, onNavigateHome }: BlogIndexPag
         {filteredPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredPosts.map((post) => (
-              <a
+              <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
-                onClick={(e) => {
-                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                    e.preventDefault();
-                    onNavigateToPost(post.slug);
-                  }
+                to={`/blog/${post.slug}`}
+                onClick={() => {
+                  if (onNavigateToPost) onNavigateToPost(post.slug);
                 }}
                 className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-500 ease-athletic cursor-pointer shadow-lg text-left"
               >
@@ -143,7 +141,7 @@ export function BlogIndexPage({ onNavigateToPost, onNavigateHome }: BlogIndexPag
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         ) : (

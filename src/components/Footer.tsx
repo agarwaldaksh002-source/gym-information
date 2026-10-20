@@ -126,19 +126,19 @@ export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
 
             {/* Quick Navigation Links */}
             <div className="flex flex-wrap items-center gap-6 mt-10 text-xs font-medium text-[#A0A0A0]">
-              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
+              <Link to="/" className="hover:text-white transition-colors cursor-pointer uppercase">
                 Home
               </Link>
-              <Link to="/workout" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
+              <Link to="/workout" className="hover:text-white transition-colors cursor-pointer uppercase">
                 Workouts
               </Link>
-              <Link to="/programs" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
+              <Link to="/programs" className="hover:text-white transition-colors cursor-pointer uppercase">
                 Programs
               </Link>
-              <Link to="/nutrition" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors cursor-pointer uppercase">
+              <Link to="/nutrition" className="hover:text-white transition-colors cursor-pointer uppercase">
                 Nutrition
               </Link>
-              <Link to="/blog" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-white hover:text-[#C6FF00] transition-colors cursor-pointer uppercase font-semibold">
+              <Link to="/blog" className="text-white hover:text-[#C6FF00] transition-colors cursor-pointer uppercase font-semibold">
                 Journal
               </Link>
               <a
@@ -170,7 +170,6 @@ export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="hover:text-[#C6FF00] transition-colors truncate block"
               >
                 • {post.title}

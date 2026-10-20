@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { NUTRITION_IMAGE, NUTRITION_PILLARS } from '../data/fitnessData.ts';
 import { SafeImage } from './SafeImage.tsx';
 
@@ -96,15 +97,21 @@ export function NutritionSection({ onDiscoverNutrition }: NutritionSectionProps)
               </div>
             </div>
 
-            {/* DISCOVER NUTRITION Button */}
-            <div>
+            {/* Actions: DISCOVER NUTRITION & EXPLORE NUTRITION */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <button
                 onClick={onDiscoverNutrition}
-                className="w-full sm:w-auto px-9 py-4 bg-[#C6FF00] hover:bg-[#b0e600] active:scale-[0.98] text-black font-condensed font-black text-sm sm:text-base tracking-widest uppercase transition-all duration-300 ease-athletic cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(198,255,0,0.18)] hover:shadow-[0_0_40px_rgba(198,255,0,0.3)]"
+                className="px-8 py-4 bg-[#C6FF00] hover:bg-[#b0e600] active:scale-[0.98] text-black font-condensed font-black text-sm sm:text-base tracking-widest uppercase transition-all duration-300 ease-athletic cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(198,255,0,0.18)] hover:shadow-[0_0_40px_rgba(198,255,0,0.3)]"
               >
-                <span>DISCOVER NUTRITION</span>
+                <span>LAUNCH CALCULATOR</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
+              <Link
+                to="/nutrition"
+                className="px-8 py-4 bg-transparent hover:bg-white/[0.08] active:scale-[0.98] text-white border border-white/20 hover:border-white font-condensed font-bold text-sm sm:text-base tracking-widest uppercase transition-all duration-300 ease-athletic cursor-pointer text-center"
+              >
+                NUTRITION BLUEPRINT
+              </Link>
             </div>
           </div>
         </div>

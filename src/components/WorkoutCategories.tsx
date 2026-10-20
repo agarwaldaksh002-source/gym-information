@@ -1,4 +1,5 @@
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { WORKOUT_CATEGORIES } from '../data/fitnessData.ts';
 import { WorkoutCategory } from '../types.ts';
 import { SafeImage } from './SafeImage.tsx';
@@ -24,9 +25,18 @@ export function WorkoutCategories({ onSelectCategory }: WorkoutCategoriesProps) 
               WORKOUT CATEGORIES
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[#A0A0A0] max-w-sm tracking-wide leading-relaxed font-normal">
-            Four primary training vectors. Engineered for progressive physical mastery.
-          </p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <p className="text-xs sm:text-sm text-[#A0A0A0] max-w-sm tracking-wide leading-relaxed font-normal">
+              Four primary training vectors. Engineered for progressive physical mastery.
+            </p>
+            <Link
+              to="/workout"
+              className="font-mono text-xs text-[#C6FF00] hover:text-white uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+            >
+              <span>EXPLORE WORKOUTS</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* 4 Large Image Cards Grid */}

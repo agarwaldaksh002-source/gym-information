@@ -19,6 +19,11 @@
       "permanent": true
     },
     {
+      "source": "/workouts",
+      "destination": "/workout",
+      "permanent": true
+    },
+    {
       "source": "/blog/the-science-of-progressive-overload-master-strength-training-and-mechanical-tension",
       "destination": "/blog/progressive-overload-strength",
       "permanent": true
@@ -34,7 +39,32 @@
       "permanent": true
     },
     {
+      "source": "/blog/progressive-overload-guide",
+      "destination": "/blog/progressive-overload-strength",
+      "permanent": true
+    },
+    {
+      "source": "/blog/progressive-overload-science",
+      "destination": "/blog/progressive-overload-strength",
+      "permanent": true
+    },
+    {
       "source": "/blog/the-science-of-progressive-overload",
+      "destination": "/blog/progressive-overload-strength",
+      "permanent": true
+    },
+    {
+      "source": "/blog/strength-training",
+      "destination": "/blog/progressive-overload-strength",
+      "permanent": true
+    },
+    {
+      "source": "/blog/strength-training-guide",
+      "destination": "/blog/progressive-overload-strength",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mechanical-tension",
       "destination": "/blog/progressive-overload-strength",
       "permanent": true
     },
@@ -64,78 +94,138 @@
       "permanent": true
     },
     {
+      "source": "/blog/hypertrophy-volume",
+      "destination": "/blog/hypertrophy-muscle-growth",
+      "permanent": true
+    },
+    {
+      "source": "/blog/muscle-building",
+      "destination": "/blog/hypertrophy-muscle-growth",
+      "permanent": true
+    },
+    {
+      "source": "/blog/muscle-protein-synthesis",
+      "destination": "/blog/hypertrophy-muscle-growth",
+      "permanent": true
+    },
+    {
       "source": "/blog/maximizing-vo2-max-and-lactate-threshold-the-elite-athlete-conditioning-protocol",
-      "destination": "/blog/vo2-max-lactate-threshold",
+      "destination": "/blog/vo2-max-conditioning",
       "permanent": true
     },
     {
       "source": "/blog/vo2-max-athletic-cardio-conditioning",
-      "destination": "/blog/vo2-max-lactate-threshold",
+      "destination": "/blog/vo2-max-conditioning",
+      "permanent": true
+    },
+    {
+      "source": "/blog/vo2-max-lactate-threshold",
+      "destination": "/blog/vo2-max-conditioning",
       "permanent": true
     },
     {
       "source": "/blog/vo2-max",
-      "destination": "/blog/vo2-max-lactate-threshold",
+      "destination": "/blog/vo2-max-conditioning",
       "permanent": true
     },
     {
-      "source": "/blog/vo2-max-conditioning",
-      "destination": "/blog/vo2-max-lactate-threshold",
+      "source": "/blog/cardio-conditioning",
+      "destination": "/blog/vo2-max-conditioning",
+      "permanent": true
+    },
+    {
+      "source": "/blog/athletic-cardio",
+      "destination": "/blog/vo2-max-conditioning",
+      "permanent": true
+    },
+    {
+      "source": "/blog/lactate-threshold",
+      "destination": "/blog/vo2-max-conditioning",
       "permanent": true
     },
     {
       "source": "/blog/joint-mobility-and-active-recovery-bulletproofing-the-kinetic-chain-for-longevity",
-      "destination": "/blog/joint-mobility-active-recovery",
+      "destination": "/blog/joint-mobility-recovery",
       "permanent": true
     },
     {
       "source": "/blog/joint-mobility-active-recovery-protocol",
-      "destination": "/blog/joint-mobility-active-recovery",
+      "destination": "/blog/joint-mobility-recovery",
+      "permanent": true
+    },
+    {
+      "source": "/blog/joint-mobility-active-recovery",
+      "destination": "/blog/joint-mobility-recovery",
+      "permanent": true
+    },
+    {
+      "source": "/blog/joint-mobility-protocol",
+      "destination": "/blog/joint-mobility-recovery",
       "permanent": true
     },
     {
       "source": "/blog/joint-mobility",
-      "destination": "/blog/joint-mobility-active-recovery",
+      "destination": "/blog/joint-mobility-recovery",
       "permanent": true
     },
     {
       "source": "/blog/mobility-recovery",
-      "destination": "/blog/joint-mobility-active-recovery",
+      "destination": "/blog/joint-mobility-recovery",
       "permanent": true
     },
     {
       "source": "/blog/active-recovery",
-      "destination": "/blog/joint-mobility-active-recovery",
+      "destination": "/blog/joint-mobility-recovery",
+      "permanent": true
+    },
+    {
+      "source": "/blog/recovery-protocol",
+      "destination": "/blog/joint-mobility-recovery",
       "permanent": true
     },
     {
       "source": "/blog/precision-macronutrient-fueling-the-athletes-blueprint-for-performance-and-recovery",
-      "destination": "/blog/precision-macronutrient-fueling",
+      "destination": "/blog/precision-nutrition-fueling",
       "permanent": true
     },
     {
       "source": "/blog/precision-macronutrient-nutrition-fueling",
-      "destination": "/blog/precision-macronutrient-fueling",
+      "destination": "/blog/precision-nutrition-fueling",
+      "permanent": true
+    },
+    {
+      "source": "/blog/precision-macronutrient-fueling",
+      "destination": "/blog/precision-nutrition-fueling",
+      "permanent": true
+    },
+    {
+      "source": "/blog/precision-macronutrient",
+      "destination": "/blog/precision-nutrition-fueling",
       "permanent": true
     },
     {
       "source": "/blog/nutrition-fueling",
-      "destination": "/blog/precision-macronutrient-fueling",
+      "destination": "/blog/precision-nutrition-fueling",
       "permanent": true
     },
     {
       "source": "/blog/macronutrient-fueling",
-      "destination": "/blog/precision-macronutrient-fueling",
+      "destination": "/blog/precision-nutrition-fueling",
+      "permanent": true
+    },
+    {
+      "source": "/blog/macronutrient-blueprint",
+      "destination": "/blog/precision-nutrition-fueling",
+      "permanent": true
+    },
+    {
+      "source": "/blog/precision-nutrition",
+      "destination": "/blog/precision-nutrition-fueling",
       "permanent": true
     },
     {
       "source": "/blog/nutrition",
-      "destination": "/blog/precision-macronutrient-fueling",
-      "permanent": true
-    },
-    {
-      "source": "/workouts",
-      "destination": "/workout",
+      "destination": "/blog/precision-nutrition-fueling",
       "permanent": true
     }
   ],

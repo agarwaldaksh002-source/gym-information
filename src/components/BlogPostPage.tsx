@@ -1,24 +1,22 @@
 import { useEffect } from 'react';
 import { Share2, Calendar, Clock, ChevronRight, ShieldCheck, UserCheck, Sparkles, HelpCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { BlogPost } from '../types.ts';
 import { BLOG_POSTS } from '../data/blogData.ts';
 import { SafeImage } from './SafeImage.tsx';
 
 interface BlogPostPageProps {
   post: BlogPost;
-  onNavigateToPost: (slug: string) => void;
-  onNavigateToBlogIndex: () => void;
-  onNavigateHome: () => void;
+  onNavigateToPost?: (slug: string) => void;
+  onNavigateToBlogIndex?: () => void;
+  onNavigateHome?: () => void;
 }
 
 export function BlogPostPage({
   post,
-  onNavigateToPost,
-  onNavigateToBlogIndex,
-  onNavigateHome,
 }: BlogPostPageProps) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [post.slug]);
 
   // Find related posts
@@ -48,19 +46,19 @@ export function BlogPostPage({
           aria-label="Breadcrumb"
           className="flex items-center gap-2 font-mono text-[11px] text-[#A0A0A0] uppercase tracking-wider overflow-x-auto whitespace-nowrap pb-2"
         >
-          <button
-            onClick={onNavigateHome}
+          <Link
+            to="/"
             className="hover:text-white transition-colors cursor-pointer"
           >
             HOME
-          </button>
+          </Link>
           <ChevronRight className="w-3 h-3 text-neutral-600 shrink-0" />
-          <button
-            onClick={onNavigateToBlogIndex}
+          <Link
+            to="/blog"
             className="hover:text-white transition-colors cursor-pointer"
           >
             JOURNAL
-          </button>
+          </Link>
           <ChevronRight className="w-3 h-3 text-neutral-600 shrink-0" />
           <span className="text-[#C6FF00] truncate max-w-xs">{post.category}</span>
         </nav>
@@ -273,28 +271,12 @@ export function BlogPostPage({
                 <span className="text-[#C6FF00] font-mono">→</span>
                 <span>
                   {link.context}{' '}
-                  <a
-                    href={link.url}
-                    onClick={(e) => {
-                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                        e.preventDefault();
-                        if (link.url.startsWith('/blog/')) {
-                          const targetSlug = link.url.replace('/blog/', '');
-                          onNavigateToPost(targetSlug);
-                        } else if (link.url.startsWith('/#')) {
-                          const targetId = link.url.replace('/#', '');
-                          onNavigateHome();
-                          setTimeout(() => {
-                            const el = document.getElementById(targetId);
-                            if (el) el.scrollIntoView({ behavior: 'smooth' });
-                          }, 100);
-                        }
-                      }
-                    }}
+                  <Link
+                    to={link.url}
                     className="text-white hover:text-[#C6FF00] underline underline-offset-4 font-semibold transition-colors cursor-pointer"
                   >
                     {link.anchorText}
-                  </a>
+                  </Link>
                   .
                 </span>
               </li>
@@ -315,26 +297,20 @@ export function BlogPostPage({
                 RECOMMENDED READING
               </h2>
             </div>
-            <button
-              onClick={onNavigateToBlogIndex}
+            <Link
+              to="/blog"
               className="font-mono text-xs text-[#A0A0A0] hover:text-[#C6FF00] uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <span>ALL PROTOCOLS</span>
               <ChevronRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((rel) => (
-              <a
+              <Link
                 key={rel.slug}
-                href={`/blog/${rel.slug}`}
-                onClick={(e) => {
-                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
-                    e.preventDefault();
-                    onNavigateToPost(rel.slug);
-                  }
-                }}
+                to={`/blog/${rel.slug}`}
                 className="group flex flex-col bg-[#111111] border border-white/[0.08] hover:border-[#C6FF00]/40 transition-all duration-300 cursor-pointer text-left"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#161616]">
@@ -361,7 +337,7 @@ export function BlogPostPage({
                     READ PROTOCOL <ChevronRight className="w-3 h-3" />
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
