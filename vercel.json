@@ -227,6 +227,21 @@
       "source": "/blog/nutrition",
       "destination": "/blog/precision-nutrition-fueling",
       "permanent": true
+    },
+    {
+      "source": "/blog/muscle-building-guide",
+      "destination": "/blog/hypertrophy-muscle-growth",
+      "permanent": true
+    },
+    {
+      "source": "/blog/healthy-diet-plan",
+      "destination": "/blog/precision-nutrition-fueling",
+      "permanent": true
+    },
+    {
+      "source": "/blog/athlete-nutrition-plan",
+      "destination": "/blog/precision-nutrition-fueling",
+      "permanent": true
     }
   ],
   "rewrites": [
