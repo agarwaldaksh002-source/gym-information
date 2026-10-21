@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://builtbydiscipline.com/sitemap.xml
+Sitemap: https://gyminformationbyda.vercel.app/sitemap.xml

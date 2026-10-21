@@ -32,7 +32,7 @@ export function updatePageSEO(options: {
   updateOrCreateMeta('og:type', article ? 'article' : 'website', 'property');
   updateOrCreateMeta('og:site_name', 'Built By Discipline', 'property');
 
-  const origin = window.location.origin || 'https://builtbydiscipline.com';
+  const origin = window.location.origin || 'https://gyminformationbyda.vercel.app';
   const fullCanonical = `${origin}${canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`}`;
   const fullImageUrl = image.startsWith('http') ? image : `${origin}${image}`;
 
