@@ -9,8 +9,8 @@ interface BlogSectionProps {
 }
 
 export function BlogSection({ onNavigateToPost }: BlogSectionProps) {
-  // Display all editorial research articles
-  const featuredPosts = BLOG_POSTS;
+  // Display top 6 editorial research articles on home preview
+  const featuredPosts = BLOG_POSTS.slice(0, 6);
 
   return (
     <section id="journal" className="relative w-full py-28 sm:py-36 bg-[#080808] border-t border-white/[0.06]">

@@ -499,13 +499,19 @@ Domain: https://builtbydiscipline.com
                 </p>
                 <div className="flex flex-wrap gap-2 text-[11px] font-mono">
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/progressive-overload-strength ⇄ /blog/hypertrophy-muscle-growth
+                    /blog/beginner-workout ⇄ /blog/build-muscle
                   </span>
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/vo2-max-conditioning ⇄ /blog/joint-mobility-recovery
+                    /blog/weight-loss ⇄ /blog/healthy-diet
                   </span>
                   <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
-                    /blog/precision-nutrition-fueling ⇄ /nutrition
+                    /blog/cardio-training ⇄ /blog/mobility-tips
+                  </span>
+                  <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
+                    /blog/fitness-recovery ⇄ /blog/fitness-motivation
+                  </span>
+                  <span className="bg-black/50 border border-white/[0.1] px-2 py-1 text-neutral-300">
+                    /blog/protein-guide ⇄ /nutrition
                   </span>
                 </div>
               </div>

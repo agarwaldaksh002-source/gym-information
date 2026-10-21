@@ -138,24 +138,12 @@ export function Footer({ onNavigate, onOpenSeoAudit }: FooterProps) {
               <Link to="/nutrition" className="hover:text-white transition-colors cursor-pointer uppercase">
                 Nutrition
               </Link>
+              <Link to="/about" className="hover:text-white transition-colors cursor-pointer uppercase">
+                About
+              </Link>
               <Link to="/blog" className="text-white hover:text-[#C6FF00] transition-colors cursor-pointer uppercase font-semibold">
                 Journal
               </Link>
-              <a
-                href="/#gallery"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (window.location.pathname !== '/') {
-                    window.location.href = '/#gallery';
-                  } else {
-                    const el = document.getElementById('gallery');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="hover:text-white transition-colors cursor-pointer uppercase"
-              >
-                Gallery
-              </a>
             </div>
           </div>
         </div>

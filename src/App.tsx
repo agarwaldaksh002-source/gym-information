@@ -5,6 +5,7 @@ import { HomePage } from './components/HomePage.tsx';
 import { WorkoutPage } from './components/WorkoutPage.tsx';
 import { ProgramsPage } from './components/ProgramsPage.tsx';
 import { NutritionPage } from './components/NutritionPage.tsx';
+import { AboutPage } from './components/AboutPage.tsx';
 import { BlogIndexPage } from './components/BlogIndexPage.tsx';
 import { BlogPostPage } from './components/BlogPostPage.tsx';
 import { Footer } from './components/Footer.tsx';
@@ -175,6 +176,14 @@ export default function App() {
         canonicalPath: '/nutrition',
         image: '/images/nutrition_meal.jpg',
       });
+    } else if (currentPath === '/about') {
+      updatePageSEO({
+        title: 'About Built By Discipline | Athletic Ethos, Research & Team',
+        description:
+          'Learn the philosophy, standards, and scientific advisory board behind Built By Discipline—engineered for athletes relentless in pursuit of physical mastery.',
+        canonicalPath: '/about',
+        image: '/images/hero_athlete.jpg',
+      });
     } else if (currentPath === '/blog' || currentPath === '/blog/') {
       updatePageSEO({
         title: 'Athletic Journal & Research Protocols | Built By Discipline',
@@ -264,6 +273,17 @@ export default function App() {
             element={
               <NutritionPage
                 onDiscoverNutrition={() => setIsNutritionOpen(true)}
+              />
+            }
+          />
+
+          {/* About Route */}
+          <Route
+            path="/about"
+            element={
+              <AboutPage
+                onOpenJourney={() => setIsJourneyOpen(true)}
+                onOpenLightbox={handleOpenLightbox}
               />
             }
           />

@@ -45,32 +45,17 @@ export function Navbar({
     { label: 'WORKOUT', path: '/workout' },
     { label: 'PROGRAMS', path: '/programs' },
     { label: 'NUTRITION', path: '/nutrition' },
+    { label: 'ABOUT', path: '/about' },
     { label: 'JOURNAL', path: '/blog' },
-    { label: 'ABOUT', path: '/#gallery' },
   ];
 
-  const handleAboutClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    if (currentPath !== '/') {
-      navigate('/#gallery');
-      setTimeout(() => {
-        const el = document.getElementById('gallery');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 150);
-    } else {
-      const el = document.getElementById('gallery');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const isRouteActive = (path: string) => {
-    if (path === '/') return currentPath === '/' && !location.hash;
+    if (path === '/') return currentPath === '/';
     if (path === '/workout') return currentPath === '/workout' || currentPath === '/workouts';
     if (path === '/programs') return currentPath === '/programs';
     if (path === '/nutrition') return currentPath === '/nutrition';
+    if (path === '/about') return currentPath === '/about';
     if (path === '/blog') return currentPath.startsWith('/blog');
-    if (path === '/#gallery') return location.hash === '#gallery';
     return false;
   };
 
@@ -104,26 +89,6 @@ export function Navbar({
           <nav className="hidden md:flex items-center gap-8 lg:gap-9 text-[11px] font-mono tracking-[0.2em] text-[#A0A0A0]">
             {navLinks.map((link) => {
               const isActive = isRouteActive(link.path);
-              if (link.path === '/#gallery') {
-                return (
-                  <a
-                    key={link.path}
-                    href="/#gallery"
-                    onClick={handleAboutClick}
-                    className={`hover:text-white transition-colors relative py-1 focus:outline-none cursor-pointer whitespace-nowrap shrink-0 group ${
-                      isActive ? 'text-white' : ''
-                    }`}
-                  >
-                    {link.label}
-                    <span
-                      className={`absolute -bottom-1 left-0 h-[1.5px] bg-[#C6FF00] transition-all duration-300 ease-athletic ${
-                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                    />
-                  </a>
-                );
-              }
-
               return (
                 <Link
                   key={link.path}
@@ -195,20 +160,6 @@ export function Navbar({
 
           <nav className="flex flex-col gap-5 py-8">
             {navLinks.map((link, idx) => {
-              if (link.path === '/#gallery') {
-                return (
-                  <a
-                    key={link.path}
-                    href="/#gallery"
-                    onClick={handleAboutClick}
-                    className="text-left font-condensed font-black text-3xl sm:text-4xl tracking-tight text-white hover:text-[#C6FF00] transition-colors cursor-pointer flex items-baseline gap-4"
-                  >
-                    <span className="text-xs font-mono text-[#C6FF00] font-normal">0{idx + 1}</span>
-                    <span>{link.label}</span>
-                  </a>
-                );
-              }
-
               return (
                 <Link
                   key={link.path}

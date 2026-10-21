@@ -83,7 +83,7 @@ export interface BlogPost {
   publishDate: string;
   modifiedDate: string;
   readTime: string;
-  category: 'Strength' | 'Hypertrophy' | 'Conditioning' | 'Mobility' | 'Nutrition';
+  category: 'Strength' | 'Hypertrophy' | 'Conditioning' | 'Mobility' | 'Nutrition' | 'Recovery' | 'Mindset';
   primaryKeyword: string;
   searchIntent: string;
   relatedKeywords: string[];

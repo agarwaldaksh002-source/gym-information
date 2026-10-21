@@ -13,7 +13,7 @@ export function BlogIndexPage({ onNavigateToPost }: BlogIndexPageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['All', 'Strength', 'Hypertrophy', 'Conditioning', 'Mobility', 'Nutrition'];
+  const categories = ['All', 'Strength', 'Hypertrophy', 'Nutrition', 'Conditioning', 'Mobility', 'Recovery', 'Mindset'];
 
   const filteredPosts = useMemo(() => {
     return BLOG_POSTS.filter((post) => {
